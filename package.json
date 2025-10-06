@@ -16,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/ShivaneRana/Inventory-Application/issues"
   },
-  "homepage": "https://github.com/ShivaneRana/Inventory-Application#readme"
+  "homepage": "https://github.com/ShivaneRana/Inventory-Application#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "eslint": "^9.37.0",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "pg": "^8.16.3",
+    "prettier": "^3.6.2"
+  }
 }
