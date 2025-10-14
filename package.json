@@ -9,7 +9,7 @@
     "pwrite": "prettier -w .",
     "pcheck": "prettier -c .",
     "populate_dev": "node ./db/populate.js dev",
-    "populate_prod": "node ./db/populate prod",
+    "populate_prod": "node ./db/populate.js prod",
     "lint": "eslint ."
   },
   "repository": {
