@@ -119,6 +119,112 @@ let create_table_command = `
     );
 `;
 
+//this data was generated via ai because it will pain to do it manually.
+
+let create_data_command = `
+    -- Insert publishers
+    INSERT INTO publishers (name, country)
+    VALUES
+        ('Shueisha', 'Japan'),
+        ('Kodansha', 'Japan'),
+        ('VIZ Media', 'United States'),
+        ('Square Enix', 'Japan'),
+        ('Shogakukan', 'Japan')
+    ON CONFLICT DO NOTHING;
+
+    -- Insert authors
+    INSERT INTO authors (first_name, middle_name, last_name, gender, age, country_of_origin)
+    VALUES
+        ('Eiichiro', '', 'Oda', 'male', 49, 'Japan'),
+        ('Hajime', '', 'Isayama', 'male', 38, 'Japan'),
+        ('Koyoharu', '', 'Gotouge', 'female', 35, 'Japan'),
+        ('Hiromu', '', 'Arakawa', 'female', 52, 'Japan'),
+        ('Akira', '', 'Toriyama', 'male', 68, 'Japan')
+    ON CONFLICT DO NOTHING;
+
+    -- Insert languages
+    INSERT INTO languages (name)
+    VALUES
+        ('Japanese'),
+        ('English'),
+        ('Spanish'),
+        ('French')
+    ON CONFLICT DO NOTHING;
+
+    -- Insert genres
+    INSERT INTO genres (name)
+    VALUES
+        ('Action'),
+        ('Adventure'),
+        ('Fantasy'),
+        ('Shonen'),
+        ('Drama'),
+        ('Comedy'),
+        ('Horror')
+    ON CONFLICT DO NOTHING;
+
+    -- Insert mangas
+    INSERT INTO mangas (name, rating, description, chapter_number)
+    VALUES
+        ('One Piece', 9.5, 'A young pirate, Monkey D. Luffy, sets out to become the Pirate King.', 1110),
+        ('Attack on Titan', 9.4, 'Humanity fights for survival against giant humanoid Titans.', 139),
+        ('Demon Slayer: Kimetsu no Yaiba', 9.2, 'Tanjiro Kamado becomes a demon slayer to avenge his family.', 205),
+        ('Fullmetal Alchemist', 9.3, 'Two brothers use alchemy to restore what they lost.', 116),
+        ('Dragon Ball', 9.0, 'The adventures of Goku as he searches for the Dragon Balls.', 519)
+    ON CONFLICT DO NOTHING;
+
+    -- Link mangas to publishers
+    INSERT INTO manga_publishers (manga_id, publisher_id)
+    VALUES
+        (1, 1), -- One Piece → Shueisha
+        (2, 2), -- Attack on Titan → Kodansha
+        (3, 1), -- Demon Slayer → Shueisha
+        (4, 4), -- Fullmetal Alchemist → Square Enix
+        (5, 5)  -- Dragon Ball → Shogakukan
+    ON CONFLICT DO NOTHING;
+
+    -- Link mangas to authors
+    INSERT INTO manga_authors (manga_id, author_id)
+    VALUES
+        (1, 1), -- Oda → One Piece
+        (2, 2), -- Isayama → Attack on Titan
+        (3, 3), -- Gotouge → Demon Slayer
+        (4, 4), -- Arakawa → Fullmetal Alchemist
+        (5, 5)  -- Toriyama → Dragon Ball
+    ON CONFLICT DO NOTHING;
+
+    -- Link mangas to genres
+    INSERT INTO manga_genres (manga_id, genre_id)
+    VALUES
+        (1, 1), (1, 2), (1, 4),       -- One Piece: Action, Adventure, Shonen
+        (2, 1), (2, 5), (2, 7),       -- Attack on Titan: Action, Drama, Horror
+        (3, 1), (3, 3), (3, 4),       -- Demon Slayer: Action, Fantasy, Shonen
+        (4, 3), (4, 5), (4, 4),       -- Fullmetal Alchemist: Fantasy, Drama, Shonen
+        (5, 1), (5, 2), (5, 4)        -- Dragon Ball: Action, Adventure, Shonen
+    ON CONFLICT DO NOTHING;
+
+    -- Link mangas to languages
+    INSERT INTO manga_languages (manga_id, language_id)
+    VALUES
+        (1, 1), (1, 2),
+        (2, 1), (2, 2), (2, 3),
+        (3, 1), (3, 2),
+        (4, 1), (4, 2),
+        (5, 1), (5, 2), (5, 4)
+    ON CONFLICT DO NOTHING;
+
+    -- Insert inventories
+    INSERT INTO inventories (price, quantity, manga_id)
+    VALUES
+        (9.99, 500, 1),
+        (8.49, 300, 2),
+        (10.99, 400, 3),
+        (7.99, 250, 4),
+        (6.49, 600, 5)
+    ON CONFLICT DO NOTHING;
+`;
+
+
 if (argv[2] === "dev") {
   DATABASE = process.env.DATABASE_DEV;
   console.log("populate development database");
@@ -134,6 +240,7 @@ async function main() {
     console.log("starting script........");
     await client.connect();
     await client.query(create_table_command);
+    await client.query(create_data_command);
     console.log("done...........");
   } catch (err) {
     console.error(err);
