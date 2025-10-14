@@ -2,39 +2,34 @@
 const { Client } = require("pg");
 
 const dotenv = require("dotenv");
-const {argv} = require("node:process");
-const path = require("node:path")
+const { argv } = require("node:process");
+const path = require("node:path");
+dotenv.config({ path: path.resolve(__dirname, "../.env"), quiet: true });
 
-dotenv.config({path:path.resolve(__dirname,"../.env"),quiet:true});
-
-if(argv[2] === 'dev'){
-    console.log("populate developer database");
-
-}else if(argv[2] === "prod"){
-    console.log("populate production database");
-
-}
-
+let DATABASE;
 let SQL = ``;
 
-async function main(){
-
-    const client = new Client({connectionString: "postgresql://localhost:5432/manga_db"});
-
-    try{
-        console.log("starting script........");
-        await client.connect();
-        await client.query(SQL);
-        await client.end();
-        console.log("done...........");
-
-    }catch(err){
-        console.error(err);
-    }finally{
-        client.end();
-    }
+if (argv[2] === "dev") {
+  console.log("populate developer database");
+  DATABASE = process.DATABASE_DEV;
+} else if (argv[2] === "prod") {
+  console.log("populate production database");
 }
 
+async function main() {
+  const client = new Client({ connectionString: DATABASE });
+
+  try {
+    console.log("starting script........");
+    await client.connect();
+    await client.query(SQL);
+    await client.end();
+    console.log("done...........");
+  } catch (err) {
+    console.error(err);
+  } finally {
+    client.end();
+  }
+}
 
 module.exports = main;
-

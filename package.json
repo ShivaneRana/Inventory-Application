@@ -5,12 +5,12 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "node --watch ./app.js",
+    "dev": "node --watch ./app.js",
     "pwrite": "prettier -w .",
     "pcheck": "prettier -c .",
     "populate_dev": "node ./db/populate.js dev",
     "populate_prod": "node ./db/populate prod",
-    "lint" : "eslint ."
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
