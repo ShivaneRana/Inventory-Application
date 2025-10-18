@@ -1,29 +1,29 @@
 const {query,body, validationResult} = require("express-validator");
 
 exports.indexGetHomePage = (req,res) => {
-    res.status(200).send("This will be the homepage");
+    res.status(200).render("index");
 };
 
 exports.indexGetCategoriesList = (req,res) => {
-    res.status(200).send("List of all the categories");
+    res.status(200).render("categories");
 }
 
 exports.indexGetLanguagesList = (req,res) => {
-    res.status(200).send("List of all the languages");
+    res.status(200).render("languages");
 }
 
 exports.indexGetAuthorsList = (req,res) => {
-    res.status(200).send("List of all the authors");
+    res.status(200).send("authors");
 }
 
 exports.indexGetMangasList = (req,res) => {
-    res.status(200).send("List of all the mangas");
+    res.status(200).send("mangas");
 }
 
 exports.indexGetPublishersList = (req,res) => {
-    res.status(200).send("List of all the publishers");
+    res.status(200).send("publishers");
 }
 
 exports.indexGetGenresList = (req,res) => {
-    res.status(200).send("List of all the genres");
+    res.status(200).send("genres");
 }
