@@ -16,14 +16,14 @@ if (argv[2] === "dev") {
 }
 
 const delete_all_table = `
-    DROP TABLE authors;
-    DROP TABLE genres;
-    DROP TABLE inventories;
-    DROP TABLE languages;
     DROP TABLE manga_authors;
     DROP TABLE manga_genres;
     DROP TABLE manga_languages;
     DROP TABLE manga_publishers;
+    DROP TABLE inventories;
+    DROP TABLE authors;
+    DROP TABLE genres;
+    DROP TABLE languages;
     DROP TABLE mangas;
     DROP TABLE publishers;
 `;
@@ -42,3 +42,6 @@ async function main() {
         client.end();
     }
 }
+
+main();
+module.exports = main;
