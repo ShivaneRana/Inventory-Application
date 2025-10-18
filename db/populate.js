@@ -13,8 +13,9 @@ let create_table_command = `
        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
        name varchar(300) NOT NULL,
        rating NUMERIC(3,1) NOT NULL CHECK (rating BETWEEN 0 AND 10),
-       description TEXT DEFAULT 'No description added',
-       chapter_number INTEGER DEFAULT 0
+       description TEXT DEFAULT 'No description',
+       chapter_number INTEGER NOT NULL DEFAULT 0,
+       volume_number INTEGER NOT NULL DEFAULT 1
     );
 
     CREATE TABLE IF NOT EXISTS publishers(
@@ -166,11 +167,11 @@ let create_data_command = `
     -- Insert mangas
     INSERT INTO mangas (name, rating, description, chapter_number)
     VALUES
-        ('One Piece', 9.5, 'A young pirate, Monkey D. Luffy, sets out to become the Pirate King.', 1110),
-        ('Attack on Titan', 9.4, 'Humanity fights for survival against giant humanoid Titans.', 139),
-        ('Demon Slayer: Kimetsu no Yaiba', 9.2, 'Tanjiro Kamado becomes a demon slayer to avenge his family.', 205),
-        ('Fullmetal Alchemist', 9.3, 'Two brothers use alchemy to restore what they lost.', 116),
-        ('Dragon Ball', 9.0, 'The adventures of Goku as he searches for the Dragon Balls.', 519)
+        ('One Piece', 9.5, 'A young pirate, Monkey D. Luffy, sets out to become the Pirate King.', 1110,105),
+        ('Attack on Titan', 9.4, 'Humanity fights for survival against giant humanoid Titans.', 139,34),
+        ('Demon Slayer: Kimetsu no Yaiba', 9.2, 'Tanjiro Kamado becomes a demon slayer to avenge his family.', 205, 23),
+        ('Fullmetal Alchemist', 9.3, 'Two brothers use alchemy to restore what they lost.', 116, 27),
+        ('Dragon Ball', 9.0, 'The adventures of Goku as he searches for the Dragon Balls.', 519, 42)
     ON CONFLICT DO NOTHING;
 
     -- Link mangas to publishers
