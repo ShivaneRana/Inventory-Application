@@ -166,7 +166,7 @@ let insert_data = `
     ON CONFLICT DO NOTHING;
 
     -- Insert mangas
-    INSERT INTO mangas (name, rating, description, chapter_number)
+    INSERT INTO mangas (name, rating, description, chapter_number,volume_number,status)
     VALUES
         ('One Piece', 9.5, 'A young pirate, Monkey D. Luffy, sets out to become the Pirate King.', 1110,105,'Ongoing'),
         ('Attack on Titan', 9.4, 'Humanity fights for survival against giant humanoid Titans.', 139,34,'Completed'),
