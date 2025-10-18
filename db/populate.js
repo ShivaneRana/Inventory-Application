@@ -6,9 +6,9 @@ const { argv } = require("node:process");
 const path = require("node:path");
 dotenv.config({ path: path.resolve(__dirname, "../.env"), quiet: true });
 
-let DATABASE;
+let DATABASE_URL;
 
-let create_table_command = `
+let create_table = `
     CREATE TABLE IF NOT EXISTS mangas(
        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
        name varchar(300) NOT NULL,
@@ -123,7 +123,7 @@ let create_table_command = `
 
 //this data was generated via ai because it will pain to do it manually.
 
-let create_data_command = `
+let insert_data = `
     -- Insert publishers
     INSERT INTO publishers (name, country)
     VALUES
@@ -228,21 +228,21 @@ let create_data_command = `
 
 
 if (argv[2] === "dev") {
-  DATABASE = process.env.DATABASE_DEV;
-  console.log("populate development database");
+  DATABASE_URL = process.env.DATABASE_DEV;
+  console.log("populated development database");
 } else if (argv[2] === "prod") {
-  DATABASE = process.env.DATABASE_PROD;
-  console.log("populate production database");
+  DATABASE_URL = process.env.DATABASE_PROD;
+  console.log("populated production database");
 }
 
 async function main() {
-  const client = new Client({ connectionString: DATABASE });
+  const client = new Client({ connectionString: DATABASE_URL });
 
   try {
     console.log("starting script........");
     await client.connect();
-    await client.query(create_table_command);
-    await client.query(create_data_command);
+    await client.query(create_table);
+    await client.query(insert_data);
     console.log("done...........");
   } catch (err) {
     console.error(err);
