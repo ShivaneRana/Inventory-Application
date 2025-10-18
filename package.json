@@ -10,6 +10,8 @@
     "pcheck": "prettier -c .",
     "populate_dev": "node ./db/populate.js dev",
     "populate_prod": "node ./db/populate.js prod",
+    "delete_dev": "node ./db/delete.js dev",
+    "delete_prod": "node ./db/delete.js prod",
     "lint": "eslint ."
   },
   "repository": {
