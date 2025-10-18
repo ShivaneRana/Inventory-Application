@@ -11,15 +11,14 @@ app.set("views", path.join(__dirname, "views"));
 app.set(express.urlencoded({ extended: true }));
 app.set(express.static(path.join(__dirname, "public")));
 
-app.get("/", indexRouter);
-
-const PORT = process.env.PORT;
+app.use("/", indexRouter);
 
 app.use((err,req,res,next) => {
   console.error(err);
-  console.log(err.message);
+  res.send(err.statusCode || 500).send(err.message);
 })
 
+const PORT = process.env.PORT;
 app.listen(PORT, (err) => {
   if (err) {
     console.error(err);
