@@ -18,23 +18,23 @@ exports.indexGetLanguagesList = async (req,res) => {
 exports.indexGetAuthorsList = async (req,res) => {
     const rows = await db.getAllAuthors();
     console.log(rows);
-    res.status(200).send("authors");
+    res.status(200).render("authors");
 }
 
 exports.indexGetMangasList = async (req,res) => {
     const rows = await db.getAllMangas();
     console.log(rows);
-    res.status(200).send("mangas");
+    res.status(200).render("mangas");
 }
 
 exports.indexGetPublishersList = async (req,res) => {
     const rows = await db.getAllPublishers();
     console.log(rows);
-    res.status(200).send("publishers");
+    res.status(200).render("publishers");
 }
 
 exports.indexGetGenresList = async (req,res) => {
     const rows = await db.getAllGenres();
     console.log(rows);
-    res.status(200).send("genres");
+    res.status(200).render("genres");
 }
