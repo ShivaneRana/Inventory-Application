@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/publishers.css" type="text/css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <title>Publishers | Manga[kan]</title>
 </head>
 <body>
     <%- include("./partials/navbar")%>
     <div class="main-page">
-        <h1>Publishers</h1> 
+        <%rows.forEach((row,index) => {%>
+            <div class="box">
+                <div>
+                    <h2><%=(index + 1) + ". "%> <%=row.name%></h2>
+                    <p>Country: <%= row.country%></p>
+                </div>
+                <a class="edit-link" href="">Edit</a>
+            </div>
+        <%})%>
     </div>
 </body>
 </html>
