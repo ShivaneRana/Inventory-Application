@@ -18,13 +18,13 @@ exports.indexGetAuthorsList = async (req, res) => {
 exports.indexGetMangasList = async (req, res) => {
     const rows = await db.getAllMangas();
     console.log(rows);
-    res.status(200).render("mangas",{rows: rows});
+    res.status(200).render("mangas", { rows: rows });
 };
 
 exports.indexGetPublishersList = async (req, res) => {
     const rows = await db.getAllPublishers();
     console.log(rows);
-    res.status(200).render("publishers",{rows: rows});
+    res.status(200).render("publishers", { rows: rows });
 };
 
 exports.indexGetGenresList = async (req, res) => {
