@@ -3,7 +3,6 @@ const indexController = require("../controllers/indexController.js");
 const indexRouter = Router();
 
 indexRouter.get("/", indexController.indexGetHomePage);
-indexRouter.get("/all", indexController.indexGetCategoriesList);
 indexRouter.get("/languages", indexController.indexGetLanguagesList);
 indexRouter.get("/genres", indexController.indexGetGenresList);
 indexRouter.get("/authors", indexController.indexGetAuthorsList);
