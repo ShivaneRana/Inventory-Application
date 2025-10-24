@@ -10,8 +10,15 @@
 </head>
 <body>
     <%- include("./partials/navbar")%>
-    <div class="main-page">
-        <h1>Genres</h1> 
-    </div>
+        <div class="main-page">
+            <%rows.forEach((row,index) => {%>
+                <div class="box">
+                    <div>
+                        <h1><%= (index + 1) + ". "+ row.name%></h1>
+                    </div>
+                    <a class="edit-link" href="">Edit</a>
+                </div>
+                <%})%>
+        </div>
 </body>
 </html>
