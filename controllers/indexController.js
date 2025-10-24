@@ -18,7 +18,7 @@ exports.indexGetLanguagesList = async (req,res) => {
 exports.indexGetAuthorsList = async (req,res) => {
     const rows = await db.getAllAuthors();
     console.log(rows);
-    res.status(200).render("authors");
+    res.status(200).render("authors",{rows:rows});
 }
 
 exports.indexGetMangasList = async (req,res) => {
