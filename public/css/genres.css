@@ -1,8 +1,8 @@
-.main-page{
+.main-page {
     display: block;
 }
 
-.box{
+.box {
     outline: 1px solid black;
     padding: 10px;
     margin: 20px;
@@ -11,13 +11,13 @@
     justify-content: space-between;
 }
 
-.box > div{
+.box > div {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-.box > a{
+.box > a {
     padding: 10px;
 }

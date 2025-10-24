@@ -1,37 +1,37 @@
 {
-  "name": "inventory-application",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch ./app.js",
-    "pwrite": "prettier -w .",
-    "pcheck": "prettier -c .",
-    "populate_dev": "node ./db/populate.js dev",
-    "populate_prod": "node ./db/populate.js prod",
-    "delete_dev": "node ./db/delete.js dev",
-    "delete_prod": "node ./db/delete.js prod",
-    "lint": "eslint ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ShivaneRana/Inventory-Application.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ShivaneRana/Inventory-Application/issues"
-  },
-  "homepage": "https://github.com/ShivaneRana/Inventory-Application#readme",
-  "dependencies": {
-    "dotenv": "^17.2.3",
-    "ejs": "^3.1.10",
-    "eslint": "^9.37.0",
-    "express": "^5.1.0",
-    "express-validator": "^7.2.1",
-    "pg": "^8.16.3",
-    "prettier": "^3.6.2"
-  }
+    "name": "inventory-application",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "node --watch ./app.js",
+        "pwrite": "prettier -w .",
+        "pcheck": "prettier -c .",
+        "populate_dev": "node ./db/populate.js dev",
+        "populate_prod": "node ./db/populate.js prod",
+        "delete_dev": "node ./db/delete.js dev",
+        "delete_prod": "node ./db/delete.js prod",
+        "lint": "eslint ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ShivaneRana/Inventory-Application.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ShivaneRana/Inventory-Application/issues"
+    },
+    "homepage": "https://github.com/ShivaneRana/Inventory-Application#readme",
+    "dependencies": {
+        "dotenv": "^17.2.3",
+        "ejs": "^3.1.10",
+        "eslint": "^9.37.0",
+        "express": "^5.1.0",
+        "express-validator": "^7.2.1",
+        "pg": "^8.16.3",
+        "prettier": "^3.6.2"
+    }
 }
