@@ -1,9 +1,42 @@
 .main-page {
     width: 100%;
-    min-height: 90vh;
+    min-height: 100vh;
     padding: 20px 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
+}
+
+.logo-text{
+    font-size: 64px;
+}
+
+.main-page > p{
+    font-size: 18px;
+    text-align: center;
+}
+
+.category-box{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.category-item{
+    font-size: 20px; 
+    padding: 10px;
+    margin: 5px;
+}
+
+.category-item > a{
+    text-decoration: underline;
+}
+
+.category-item > a:hover{
+    text-decoration: none;
 }
