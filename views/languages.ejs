@@ -11,7 +11,16 @@
 <body>
     <%- include("./partials/navbar")%>
     <div class="main-page">
-        <h1>Languages</h1> 
+            <%rows.forEach((row,index)=> {%>
+                <div class="box">
+                    <div>
+                        <h2>
+                            <%= (index + 1) + ". " + row.name%>
+                        </h2>
+                    </div>
+                    <a class="edit-link" href="">Edit</a>
+                </div>
+                <%})%>
     </div>
 </body>
 </html>
