@@ -35,6 +35,5 @@ exports.indexGetPublishersList = async (req,res) => {
 
 exports.indexGetGenresList = async (req,res) => {
     const rows = await db.getAllGenres();
-    console.log(rows);
-    res.status(200).render("genres");
+    res.status(200).render("genres",{rows: rows});
 }
