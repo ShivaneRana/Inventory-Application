@@ -11,13 +11,11 @@ exports.indexGetCategoriesList = (req, res) => {
 
 exports.indexGetLanguagesList = async (req, res) => {
     const rows = await db.getAllLanguages()
-    console.log(rows)
-    res.status(200).render("languages")
+    res.status(200).render("languages",{rows:rows})
 }
 
 exports.indexGetAuthorsList = async (req, res) => {
     const rows = await db.getAllAuthors()
-    console.log(rows)
     res.status(200).render("authors", { rows: rows })
 }
 
