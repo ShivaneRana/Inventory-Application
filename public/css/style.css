@@ -18,14 +18,36 @@ body{
 
 /* navbar */
 nav{
-    width: 99%;
-    padding: 19px;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-ul{
-    list-style: none;
+.navbar-container{
+    width: 90%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-container > a:hover{
+    text-decoration: none;
+}
+
+.inner-navbar-container{
+    width: 50%;
+}
+
+.inner-navbar-container > ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inner-navbar-container > ul > li{
+    list-style: none;
+    margin: 10px;
 }
 
 a{
@@ -36,5 +58,3 @@ a{
 a:hover{
     text-decoration: underline;
 }
-
-
