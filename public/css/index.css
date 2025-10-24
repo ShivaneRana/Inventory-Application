@@ -9,16 +9,16 @@
     gap: 20px;
 }
 
-.logo-text{
+.logo-text {
     font-size: 64px;
 }
 
-.main-page > p{
+.main-page > p {
     font-size: 18px;
     text-align: center;
 }
 
-.category-box{
+.category-box {
     width: 80%;
     display: flex;
     flex-wrap: wrap;
@@ -27,16 +27,16 @@
     margin-top: 50px;
 }
 
-.category-item{
-    font-size: 20px; 
+.category-item {
+    font-size: 20px;
     padding: 10px;
     margin: 5px;
 }
 
-.category-item > a{
+.category-item > a {
     text-decoration: underline;
 }
 
-.category-item > a:hover{
+.category-item > a:hover {
     text-decoration: none;
 }
