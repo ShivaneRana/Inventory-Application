@@ -1,12 +1,12 @@
 #! /usr/bin/env node
-const { Client } = require("pg")
+const { Client } = require("pg");
 
-const dotenv = require("dotenv")
-const { argv } = require("node:process")
-const path = require("node:path")
-dotenv.config({ path: path.resolve(__dirname, "../.env"), quiet: true })
+const dotenv = require("dotenv");
+const { argv } = require("node:process");
+const path = require("node:path");
+dotenv.config({ path: path.resolve(__dirname, "../.env"), quiet: true });
 
-let DATABASE_URL
+let DATABASE_URL;
 
 let create_table = `
     CREATE TABLE IF NOT EXISTS mangas(
@@ -119,7 +119,7 @@ let create_table = `
         ON DELETE CASCADE
         ON UPDATE CASCADE
     );
-`
+`;
 
 //this data was generated via ai because it will pain to do it manually.
 
@@ -224,31 +224,31 @@ let insert_data = `
         (7.99, 250, 4),
         (6.49, 600, 5)
     ON CONFLICT DO NOTHING;
-`
+`;
 
 if (argv[2] === "dev") {
-    DATABASE_URL = process.env.DATABASE_DEV
-    console.log("populated development database")
+    DATABASE_URL = process.env.DATABASE_DEV;
+    console.log("populated development database");
 } else if (argv[2] === "prod") {
-    DATABASE_URL = process.env.DATABASE_PROD
-    console.log("populated production database")
+    DATABASE_URL = process.env.DATABASE_PROD;
+    console.log("populated production database");
 }
 
 async function main() {
-    const client = new Client({ connectionString: DATABASE_URL })
+    const client = new Client({ connectionString: DATABASE_URL });
 
     try {
-        console.log("starting script........")
-        await client.connect()
-        await client.query(create_table)
-        await client.query(insert_data)
-        console.log("done...........")
+        console.log("starting script........");
+        await client.connect();
+        await client.query(create_table);
+        await client.query(insert_data);
+        console.log("done...........");
     } catch (err) {
-        console.error(err)
+        console.error(err);
     } finally {
-        client.end()
+        client.end();
     }
 }
 
-main()
-module.exports = main
+main();
+module.exports = main;

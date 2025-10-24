@@ -1,18 +1,18 @@
-const { Client } = require("pg")
-const dotenv = require("dotenv")
-const { argv } = require("node:process")
-const path = require("node:path")
+const { Client } = require("pg");
+const dotenv = require("dotenv");
+const { argv } = require("node:process");
+const path = require("node:path");
 
-dotenv.config({ path: path.resolve(__dirname, "../.env"), quiet: true })
+dotenv.config({ path: path.resolve(__dirname, "../.env"), quiet: true });
 
-let DATABASE_URL
+let DATABASE_URL;
 
 if (argv[2] === "dev") {
-    DATABASE_URL = process.env.DATABASE_DEV
-    console.log("deleted development database")
+    DATABASE_URL = process.env.DATABASE_DEV;
+    console.log("deleted development database");
 } else if (argv[2] === "prod") {
-    DATABASE_URL = process.env.DATABASE_PROD
-    console.log("deleted production database")
+    DATABASE_URL = process.env.DATABASE_PROD;
+    console.log("deleted production database");
 }
 
 const delete_all_table = `
@@ -26,22 +26,22 @@ const delete_all_table = `
     DROP TABLE languages;
     DROP TABLE mangas;
     DROP TABLE publishers;
-`
+`;
 
 async function main() {
-    const client = new Client({ connectionString: DATABASE_URL })
+    const client = new Client({ connectionString: DATABASE_URL });
 
     try {
-        console.log("starting script........")
-        await client.connect()
-        await client.query(delete_all_table)
-        console.log("done...........")
+        console.log("starting script........");
+        await client.connect();
+        await client.query(delete_all_table);
+        console.log("done...........");
     } catch (err) {
-        console.error(err)
+        console.error(err);
     } finally {
-        client.end()
+        client.end();
     }
 }
 
-main()
-module.exports = main
+main();
+module.exports = main;
