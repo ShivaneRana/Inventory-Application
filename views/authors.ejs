@@ -11,15 +11,15 @@
 <body>
     <%- include("./partials/navbar")%>
     <div class="main-page">
-        <%rows.forEach(row => {%>
+        <%rows.forEach((row,index) => {%>
             <div class="box">
                 <div>
-                    <h1><%= row.first_name + " " + row.middle_name + " " + row.last_name%></h1>
+                    <h1><%=  (index+ 1)+". " + row.first_name + " " + row.middle_name + " " + row.last_name%></h1>
                     <p>Age: <%= row.age%></p>
                     <p>Gender: <%= row.gender%></p>
                     <p>Country of origin: <%= row.country_of_origin%></p>
                 </div>
-                <a class="edit-link" href="./">Edit</a>
+                <a class="edit-link" href="">Edit</a>
             </div>
         <%})%>
     </div>
