@@ -5,10 +5,6 @@ exports.indexGetHomePage = (req, res) => {
     res.status(200).render("index");
 };
 
-exports.indexGetCategoriesList = (req, res) => {
-    res.status(200).render("categories");
-};
-
 exports.indexGetLanguagesList = async (req, res) => {
     const rows = await db.getAllLanguages();
     res.status(200).render("languages", { rows: rows });
@@ -22,13 +18,13 @@ exports.indexGetAuthorsList = async (req, res) => {
 exports.indexGetMangasList = async (req, res) => {
     const rows = await db.getAllMangas();
     console.log(rows);
-    res.status(200).render("mangas");
+    res.status(200).render("mangas",{rows: rows});
 };
 
 exports.indexGetPublishersList = async (req, res) => {
     const rows = await db.getAllPublishers();
     console.log(rows);
-    res.status(200).render("publishers");
+    res.status(200).render("publishers",{rows: rows});
 };
 
 exports.indexGetGenresList = async (req, res) => {
