@@ -11,7 +11,7 @@ exports.indexGetCategoriesList = (req, res) => {
 
 exports.indexGetLanguagesList = async (req, res) => {
     const rows = await db.getAllLanguages()
-    res.status(200).render("languages",{rows:rows})
+    res.status(200).render("languages", { rows: rows })
 }
 
 exports.indexGetAuthorsList = async (req, res) => {
@@ -33,5 +33,5 @@ exports.indexGetPublishersList = async (req, res) => {
 
 exports.indexGetGenresList = async (req, res) => {
     const rows = await db.getAllGenres()
-    res.status(200).render("genres",{rows: rows})
+    res.status(200).render("genres", { rows: rows })
 }
