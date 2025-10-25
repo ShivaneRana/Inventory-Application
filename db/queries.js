@@ -2,7 +2,9 @@ const pool = require("./pool.js");
 
 // return all mangas and also inventories
 exports.getAllMangas = async () => {
-    const { rows } = await pool.query("SELECT * FROM mangas as m JOIN inventories as i ON m.id = i.id ORDER BY m.name");
+    const { rows } = await pool.query(
+        "SELECT * FROM mangas as m JOIN inventories as i ON m.id = i.id ORDER BY m.name"
+    );
     return rows;
 };
 
@@ -17,7 +19,9 @@ exports.getAllPublishers = async () => {
 };
 
 exports.getAllAuthors = async () => {
-    const { rows } = await pool.query("SELECT * FROM authors ORDER BY first_name");
+    const { rows } = await pool.query(
+        "SELECT * FROM authors ORDER BY first_name"
+    );
     return rows;
 };
 
