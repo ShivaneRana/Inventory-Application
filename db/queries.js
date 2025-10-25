@@ -9,12 +9,16 @@ exports.getAllMangas = async () => {
 };
 
 exports.getAllLanguages = async () => {
-    const { rows } = await pool.query("SELECT * FROM languages ORDER BY language_name");
+    const { rows } = await pool.query(
+        "SELECT * FROM languages ORDER BY language_name"
+    );
     return rows;
 };
 
 exports.getAllPublishers = async () => {
-    const { rows } = await pool.query("SELECT * FROM publishers ORDER BY publisher_name");
+    const { rows } = await pool.query(
+        "SELECT * FROM publishers ORDER BY publisher_name"
+    );
     return rows;
 };
 
@@ -26,6 +30,8 @@ exports.getAllAuthors = async () => {
 };
 
 exports.getAllGenres = async () => {
-    const { rows } = await pool.query("SELECT * FROM genres ORDER BY genre_name");
+    const { rows } = await pool.query(
+        "SELECT * FROM genres ORDER BY genre_name"
+    );
     return rows;
 };
