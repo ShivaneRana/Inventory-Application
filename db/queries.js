@@ -1,7 +1,8 @@
 const pool = require("./pool.js");
 
+// return all mangas and also inventories
 exports.getAllMangas = async () => {
-    const { rows } = await pool.query("SELECT * FROM mangas");
+    const { rows } = await pool.query("SELECT * FROM mangas as m JOIN inventories as i ON m.id = i.id");
     return rows;
 };
 
