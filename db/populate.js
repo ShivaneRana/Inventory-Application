@@ -16,7 +16,8 @@ let create_table = `
        description TEXT DEFAULT 'No description',
        chapter_number INTEGER NOT NULL DEFAULT 0,
        volume_number INTEGER NOT NULL DEFAULT 1,
-       status VARCHAR(50) NOT NULL DEFAULT 'Unknown'
+       status VARCHAR(50) NOT NULL DEFAULT 'Unknown',
+       manga_image_url text DEFAULT '/default-cover.svg'
     );
 
     CREATE TABLE IF NOT EXISTS publishers(
@@ -166,13 +167,13 @@ let insert_data = `
     ON CONFLICT DO NOTHING;
 
     -- Insert mangas
-    INSERT INTO mangas (name, rating, description, chapter_number,volume_number,status)
+    INSERT INTO mangas (name, rating, description, chapter_number,volume_number,status,manga_image_url)
     VALUES
-        ('One Piece', 9.5, 'A young pirate, Monkey D. Luffy, sets out to become the Pirate King.', 1110,105,'Ongoing'),
-        ('Attack on Titan', 9.4, 'Humanity fights for survival against giant humanoid Titans.', 139,34,'Completed'),
-        ('Demon Slayer: Kimetsu no Yaiba', 9.2, 'Tanjiro Kamado becomes a demon slayer to avenge his family.', 205, 23, 'Completed'),
-        ('Fullmetal Alchemist', 9.3, 'Two brothers use alchemy to restore what they lost.', 116, 27, 'Completed'),
-        ('Dragon Ball', 9.0, 'The adventures of Goku as he searches for the Dragon Balls.', 519, 42, 'Completed')
+        ('One Piece', 9.5, 'A young pirate, Monkey D. Luffy, sets out to become the Pirate King.', 1110,105,'Ongoing','https://comicvine.gamespot.com/a/uploads/scale_large/11158/111586527/9779847-0520978124-97840.jpg'),
+        ('Attack on Titan', 9.4, 'Humanity fights for survival against giant humanoid Titans.', 139,34,'Completed','https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3506326-01.jpg'),
+        ('Demon Slayer: Kimetsu no Yaiba', 9.2, 'Tanjiro Kamado becomes a demon slayer to avenge his family.', 205, 23, 'Completed','https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/7696708-23.jpg'),
+        ('Fullmetal Alchemist', 9.3, 'Two brothers use alchemy to restore what they lost.', 116, 27, 'Completed','https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3023786-27.jpg'),
+        ('Dragon Ball', 9.0, 'The adventures of Goku as he searches for the Dragon Balls.', 519, 42, 'Completed','https://comicvine.gamespot.com/a/uploads/scale_large/0/4/45048-7104-52108-1-dragon-ball.jpg')
     ON CONFLICT DO NOTHING;
 
     -- Link mangas to publishers
