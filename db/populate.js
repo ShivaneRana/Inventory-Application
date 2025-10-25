@@ -43,9 +43,7 @@ let create_table = `
 
     CREATE TABLE IF NOT EXISTS authors(
         author_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        author_first_name varchar(200) NOT NULL,
-        author_middle_name varchar(200) NOT NULL DEFAULT '',
-        author_last_name varchar(200) NOT NULL,
+        author_fullname varchar(200) NOT NULL DEFAULT 'Unknown',
         author_gender varchar(200) NOT NULL CHECK (author_gender IN ('male','female','other')),
         author_age INTEGER NOT NULL CHECK (author_age > 0),
         author_country_of_origin varchar(200) NOT NULL
@@ -136,13 +134,13 @@ let insert_data = `
     ON CONFLICT DO NOTHING;
 
     -- Insert authors
-    INSERT INTO authors (author_first_name, author_middle_name, author_last_name, author_gender, author_age, author_country_of_origin)
+    INSERT INTO authors (author_fullname, author_gender, author_age, author_country_of_origin)
     VALUES
-        ('Eiichiro', '', 'Oda', 'male', 49, 'Japan'),
-        ('Hajime', '', 'Isayama', 'male', 38, 'Japan'),
-        ('Koyoharu', '', 'Gotouge', 'female', 35, 'Japan'),
-        ('Hiromu', '', 'Arakawa', 'female', 52, 'Japan'),
-        ('Akira', '', 'Toriyama', 'male', 68, 'Japan')
+        ('Eiichiro Oda', 'male', 49, 'Japan'),
+        ('Hajime Isayama', 'male', 38, 'Japan'),
+        ('Koyoharu Gotouge', 'female', 35, 'Japan'),
+        ('Hiromu Arakawa', 'female', 52, 'Japan'),
+        ('Akira Toriyama', 'male', 68, 'Japan')
     ON CONFLICT DO NOTHING;
 
     -- Insert languages
