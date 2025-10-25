@@ -17,10 +17,10 @@
         <%rows.forEach((row,index) => {%>
             <div class="box">
                 <div>
-                    <h2><%=  (index+ 1)+". " + row.first_name + " " + row.middle_name + " " + row.last_name%></h2>
-                    <p>Age: <%= row.age%></p>
-                    <p>Gender: <%= row.gender%></p>
-                    <p>Country of origin: <%= row.country_of_origin%></p>
+                    <h2><%=  (index+ 1)+". " + row.author_first_name + " " + row.author_middle_name + " " + row.author_last_name%></h2>
+                    <p>Age: <%= row.author_age%></p>
+                    <p>Gender: <%= row.author_gender%></p>
+                    <p>Country of origin: <%= row.author_country_of_origin%></p>
                 </div>
                 <a class="edit-link" href="">Edit</a>
             </div>

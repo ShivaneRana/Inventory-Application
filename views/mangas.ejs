@@ -25,18 +25,18 @@
                     >
                         <div class="manga-detail">
                             <h2>
-                                <%=row.name%>
+                                <%=row.manga_name%>
                             </h2>
-                            <p>Rating: <%= row.rating%>
+                            <p>Rating: <%= row.manga_rating%>
                             </p>
-                            <p>Status: <%= row.status%>
+                            <p>Status: <%= row.manga_status%>
                             </p>
-                            <p>Chapter: <%= row.chapter_number%> | Volume: <%= row.volume_number%>
+                            <p>Chapter: <%= row.manga_chapter_number%> | Volume: <%= row.manga_volume_number%>
                             </p>
-                            <p>Price: $<%= row.price%></p>
-                            <p>Quantity: <%= row.quantity !== 0 ? row.quantity : 'Unvailable'%></p>
+                            <p>Price: $<%= row.inventory_price%></p>
+                            <p>Quantity: <%= row.inventory_quantity !== 0 ? row.inventory_quantity : 'Unvailable'%></p>
                             <p>
-                                <%= row.description%>
+                                <%= row.manga_description%>
                             </p>
                             <div class="link-holder">
                                 <a class="edit-link" href="">Edit</a>

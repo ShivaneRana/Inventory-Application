@@ -10,20 +10,20 @@ let DATABASE_URL;
 
 let create_table = `
     CREATE TABLE IF NOT EXISTS mangas(
-       id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-       name varchar(300) NOT NULL,
-       rating NUMERIC(3,1) NOT NULL CHECK (rating BETWEEN 0 AND 10),
-       description TEXT DEFAULT 'No description',
-       chapter_number INTEGER NOT NULL DEFAULT 0,
-       volume_number INTEGER NOT NULL DEFAULT 1,
-       status VARCHAR(50) NOT NULL DEFAULT 'Unknown',
+       manga_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+       manga_name varchar(300) NOT NULL,
+       manga_rating NUMERIC(3,1) NOT NULL CHECK (manga_rating BETWEEN 0 AND 10),
+       manga_description TEXT DEFAULT 'No description',
+       manga_chapter_number INTEGER NOT NULL DEFAULT 0,
+       manga_volume_number INTEGER NOT NULL DEFAULT 1,
+       manga_status VARCHAR(50) NOT NULL DEFAULT 'Unknown',
        manga_image_url text DEFAULT '/default-cover.svg'
     );
 
     CREATE TABLE IF NOT EXISTS publishers(
-        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        name varchar(200) NOT NULL UNIQUE,
-        country varchar(200) NOT NULL
+        publisher_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        publisher_name varchar(200) NOT NULL UNIQUE,
+        publisher_country varchar(200) NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS manga_publishers (
@@ -32,23 +32,23 @@ let create_table = `
         PRIMARY KEY (manga_id,publisher_id),
 
         FOREIGN KEY (manga_id)
-        REFERENCES mangas(id)
+        REFERENCES mangas(manga_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
 
-        FOREIGN KEY (publisher_id) REFERENCES publishers(id)
+        FOREIGN KEY (publisher_id) REFERENCES publishers(publisher_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS authors(
-        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        first_name varchar(200) NOT NULL,
-        middle_name varchar(200) NOT NULL DEFAULT '',
-        last_name varchar(200) NOT NULL,
-        gender varchar(200) NOT NULL CHECK (gender IN ('male','female','other')),
-        age INTEGER NOT NULL CHECK (age > 0),
-        country_of_origin varchar(200) NOT NULL
+        author_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        author_first_name varchar(200) NOT NULL,
+        author_middle_name varchar(200) NOT NULL DEFAULT '',
+        author_last_name varchar(200) NOT NULL,
+        author_gender varchar(200) NOT NULL CHECK (author_gender IN ('male','female','other')),
+        author_age INTEGER NOT NULL CHECK (author_age > 0),
+        author_country_of_origin varchar(200) NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS manga_authors (
@@ -57,31 +57,31 @@ let create_table = `
         PRIMARY KEY (manga_id,author_id),
 
         FOREIGN KEY (manga_id)
-        REFERENCES mangas(id)
+        REFERENCES mangas(manga_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
 
         FOREIGN KEY (author_id)
-        REFERENCES authors(id)
+        REFERENCES authors(author_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS inventories(
-        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        price NUMERIC(5,2) NOT NULL CHECK (price > 0),
-        quantity INTEGER NOT NULL CHECK (quantity >= 0),
+        inventory_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        inventory_price NUMERIC(5,2) NOT NULL CHECK (inventory_price > 0),
+        inventory_quantity INTEGER NOT NULL CHECK (inventory_quantity >= 0),
         manga_id INTEGER NOT NULL UNIQUE,
         
         FOREIGN KEY (manga_id)
-        REFERENCES mangas(id)
+        REFERENCES mangas(manga_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS languages(
-        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        name varchar(200) NOT NULL UNIQUE DEFAULT 'japanese'
+        language_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        language_name varchar(200) NOT NULL UNIQUE DEFAULT 'japanese'
     );
 
     CREATE TABLE IF NOT EXISTS manga_languages(
@@ -90,19 +90,19 @@ let create_table = `
         PRIMARY KEY (manga_id,language_id),
 
         FOREIGN KEY (manga_id)
-        REFERENCES mangas(id)
+        REFERENCES mangas(manga_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
 
         FOREIGN KEY (language_id)
-        REFERENCES languages(id)
+        REFERENCES languages(language_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS genres(
-        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        name varchar(200) NOT NULL UNIQUE
+        genre_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        genre_name varchar(200) NOT NULL UNIQUE
     );
 
     CREATE TABLE IF NOT EXISTS manga_genres(
@@ -111,12 +111,12 @@ let create_table = `
         PRIMARY KEY (manga_id,genre_id),
 
         FOREIGN KEY (manga_id)
-        REFERENCES mangas(id)
+        REFERENCES mangas(manga_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
 
         FOREIGN KEY (genre_id)
-        REFERENCES genres(id)
+        REFERENCES genres(genre_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
     );
@@ -126,7 +126,7 @@ let create_table = `
 
 let insert_data = `
     -- Insert publishers
-    INSERT INTO publishers (name, country)
+    INSERT INTO publishers (publisher_name, publisher_country)
     VALUES
         ('Shueisha', 'Japan'),
         ('Kodansha', 'Japan'),
@@ -136,7 +136,7 @@ let insert_data = `
     ON CONFLICT DO NOTHING;
 
     -- Insert authors
-    INSERT INTO authors (first_name, middle_name, last_name, gender, age, country_of_origin)
+    INSERT INTO authors (author_first_name, author_middle_name, author_last_name, author_gender, author_age, author_country_of_origin)
     VALUES
         ('Eiichiro', '', 'Oda', 'male', 49, 'Japan'),
         ('Hajime', '', 'Isayama', 'male', 38, 'Japan'),
@@ -146,7 +146,7 @@ let insert_data = `
     ON CONFLICT DO NOTHING;
 
     -- Insert languages
-    INSERT INTO languages (name)
+    INSERT INTO languages (language_name)
     VALUES
         ('Japanese'),
         ('English'),
@@ -155,7 +155,7 @@ let insert_data = `
     ON CONFLICT DO NOTHING;
 
     -- Insert genres
-    INSERT INTO genres (name)
+    INSERT INTO genres (genre_name)
     VALUES
         ('Action'),
         ('Adventure'),
@@ -167,7 +167,7 @@ let insert_data = `
     ON CONFLICT DO NOTHING;
 
     -- Insert mangas
-    INSERT INTO mangas (name, rating, description, chapter_number,volume_number,status,manga_image_url)
+    INSERT INTO mangas (manga_name, manga_rating, manga_description, manga_chapter_number,manga_volume_number,manga_status,manga_image_url)
     VALUES
         ('One Piece', 9.5, 'A young pirate, Monkey D. Luffy, sets out to become the Pirate King.', 1110,105,'Ongoing','https://comicvine.gamespot.com/a/uploads/scale_large/11158/111586527/9779847-0520978124-97840.jpg'),
         ('Attack on Titan', 9.4, 'Humanity fights for survival against giant humanoid Titans.', 139,34,'Completed','https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/3506326-01.jpg'),
@@ -217,7 +217,7 @@ let insert_data = `
     ON CONFLICT DO NOTHING;
 
     -- Insert inventories
-    INSERT INTO inventories (price, quantity, manga_id)
+    INSERT INTO inventories (inventory_price, inventory_quantity, manga_id)
     VALUES
         (9.99, 500, 1),
         (8.49, 300, 2),
