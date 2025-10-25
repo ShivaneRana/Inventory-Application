@@ -27,14 +27,18 @@
                             <h2>
                                 <%=row.manga_name%>
                             </h2>
+                            <p>Authors: <%= row.author_fullname%></p>
+                            <p>Publisher: <%= row.publisher_name%></p>
                             <p>Rating: <%= row.manga_rating%>
                             </p>
+                            <p>Genres: <%= row.genre_name%></p>
                             <p>Status: <%= row.manga_status%>
                             </p>
                             <p>Chapter: <%= row.manga_chapter_number%> | Volume: <%= row.manga_volume_number%>
                             </p>
-                            <p>Price: $<%= row.inventory_price%></p>
-                            <p>Quantity: <%= row.inventory_quantity !== 0 ? row.inventory_quantity : 'Unvailable'%></p>
+                            <p>Langages: <%= row.language_name%></p>
+                            <p>Price: $<%= row.inventory_price %></p>
+                            <p>Quantity: <%= row.inventory_quantity !== 0 ? row.inventory_quantity : 'N/A'%></p>
                             <p>
                                 <%= row.manga_description%>
                             </p>
