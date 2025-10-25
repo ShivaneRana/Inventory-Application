@@ -17,7 +17,7 @@
         <%rows.forEach((row,index) => {%>
             <div class="box">
                 <div>
-                    <h2><%=  (index+ 1)+". " + row.author_first_name + " " + row.author_middle_name + " " + row.author_last_name%></h2>
+                    <h2><%=  (index+ 1)+". " + row.author_fullname%></h2>
                     <p>Age: <%= row.author_age%></p>
                     <p>Gender: <%= row.author_gender%></p>
                     <p>Country of origin: <%= row.author_country_of_origin%></p>
