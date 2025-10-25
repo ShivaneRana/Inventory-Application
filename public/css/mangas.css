@@ -3,21 +3,59 @@
 }
 
 .box {
+    min-width: min-content;
     outline: 1px solid black;
     padding: 10px;
     margin: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 50px;
 }
 
-.box > div {
+/* manga image */
+.cover-image{
+    min-width: 350px;
+    max-height: 550px;
+    outline: 1px solid black;
+}
+
+.box > .manga-detail{
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: flex-start;
+    justify-content: flex-end;
+    gap: 20px;
 }
 
-.box > a {
-    padding: 10px;
+.box > .manga-detail > h2{
+    font-size: 32px;
 }
+
+.box > .manga-detail > .link-holder{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+}
+
+.link-holder > a{
+    width: 200px;
+    font-size: 18px;
+    font-weight: bolder;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    text-decoration: none;
+    outline: 1px solid black;
+}
+
+.link-holder > a:hover{
+    background-color: black;
+    color: white;
+}
+
