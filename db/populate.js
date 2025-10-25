@@ -70,7 +70,7 @@ let create_table = `
     CREATE TABLE IF NOT EXISTS inventories(
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         price NUMERIC(5,2) NOT NULL CHECK (price > 0),
-        quantity INTEGER NOT NULL CHECK (quantity > 0),
+        quantity INTEGER NOT NULL CHECK (quantity >= 0),
         manga_id INTEGER NOT NULL UNIQUE,
         
         FOREIGN KEY (manga_id)
