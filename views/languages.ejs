@@ -11,9 +11,17 @@
 <body>
     <%- include("./partials/navbar")%>
     <div class="main-page">
-            <div class="editor">
-                <a href="">Add new language</a>
-            </div>
+
+            <% if(locals.flag) {%>
+                <%- include("partials/languageForm",{errors:locals.errors})%>
+            <% } else{%>
+                <div class="editor">
+                    <a href="languages/add">Add new language</a>
+                </div>
+            <% }%>
+            
+
+
             <%rows.forEach((row,index)=> {%>
                 <div class="box">
                     <div>

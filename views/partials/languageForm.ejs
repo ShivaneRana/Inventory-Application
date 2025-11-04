@@ -1,9 +1,22 @@
-<form action="/add" method="POST">
-    <h3>Add new language</h3>
-    <label for="language_name">Enter language name</label>
-    <input type="text" name="language_name" id="language_name">
-    <div>
-        <button>Add</button>
-        <a href="/">Close</a>
-    </div>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/languages.css" type="text/css">
+</head>
+<body>
+    <form class="language-form" action="" method="POST">
+        <h3>Add new language</h3>
+        <%- include("errors")%>
+        <div>
+            <label for="language_name">Enter language: </label>
+            <input type="text" name="language_name" placeholder="Enter language" id="language_name">
+        </div>
+        <div>
+            <button>Add</button>
+            <a href="/languages">Close</a>
+        </div>
+    </form>
+
+</body>
+
+</html>

@@ -1,9 +1,24 @@
-<form action="/add" method="POST">
-    <h3>Add new publisher</h3>
-    <label for="publisher_name">Enter publisher name</label>
-    <input type="text" name="publisher_name" id="publisher_name">
-    <div>
-        <button>Add</button>
-        <a href="/">Close</a>
-    </div>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/publishers.css" type="text/css">
+</head>
+<body>
+    <form class="publisher-form" action="" method="POST">
+        <h3>Add new publisher</h3>
+        <%- include("errors")%>
+        <div>
+            <label for="publisher_name">Name: </label>
+            <input type="text" name="publisher_name" placeholder="Enter publisher name" id="publisher_name">
+        </div>
+        <div>
+            <label for="publisher_country">Country: </label>
+            <input type="text" name="publisher_country" placeholder="Enter publisher country" id="publisher_country">
+        </div>
+        <div>
+            <button>Add</button>
+            <a href="/publishers">Close</a>
+        </div>
+    </form>
+</body>
+</html>
