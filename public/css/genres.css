@@ -21,3 +21,30 @@
 .box > a {
     padding: 10px;
 }
+
+.genre-form {
+    margin: 0px 20px 20px 20px;
+    padding: 10px;
+    outline: 1px solid black;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.genre-form > div {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.genre-form > div > button {
+    padding: 10px;
+}
+
+.genre-form > ul {
+    list-style-type: none;
+    color: red;
+}
+

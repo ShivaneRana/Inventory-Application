@@ -1,9 +1,19 @@
-<form action="/add" method="POST">
-    <h3>Add new genre</h3>
-    <label for="genre_name">Enter genre name</label>
-    <input type="text" name="genre_name" id="genre_name">
-    <div>
-        <button>Add</button>
-        <a href="/">Close</a>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <form class="genre-form" action="/genres/add" method="POST">
+        <h3>Add new genre</h3>
+        <%- include("errors")%>
+        <div>
+            <label for="genre_name">Name: </label>
+            <input type="text" name="genre_name" id="genre_name" placeholder="Enter new genre">
+        </div>
+        <div>
+            <button>Add</button>
+            <a href="/genres">Close</a>
+        </div>
 </form>
+</body>
+</html>

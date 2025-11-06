@@ -11,9 +11,13 @@
 <body>
     <%- include("./partials/navbar")%>
         <div class="main-page">
-            <div class="editor">
-                <a href="">Add new genre</a>
-            </div>
+            <% if(locals.flag){%>
+                <%- include("partials/genreForm",{errors:locals.errors}) %>
+            <%} else {%>
+                <div class="editor">
+                    <a href="/genres/add">Add new genre</a>
+                </div>
+            <%}%>
             <%rows.forEach((row,index) => {%>
                 <div class="box">
                     <div>
