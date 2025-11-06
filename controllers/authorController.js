@@ -1,4 +1,4 @@
-const { body, param, validationResult } = require("express-validator");
+const { body, param, validationResult, matchedData } = require("express-validator");
 const db = require("../db/queries.js");
 
 const validationObject = [
@@ -31,7 +31,7 @@ exports.postAddAuthor = [
             return res.status(404).render("authors",{rows:rows, flag: true, errors: errors.array()})
         }
         
-        const {author_name,author_country,author_gender,author_age} = req.body;
+        const {author_name,author_country,author_gender,author_age} = matchedData(req);
         return res.status(200).redirect("/authors");
     }
 ]

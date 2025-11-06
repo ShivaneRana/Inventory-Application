@@ -35,8 +35,8 @@ exports.postAddLanguage = [
                 errors: errors.array(),
             });
         }
+
         const { language_name } = matchedData(req);
-        console.log(language_name);
         return res.redirect("/languages");
     },
 ];

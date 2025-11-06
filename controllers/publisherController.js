@@ -43,8 +43,6 @@ exports.postAddPublisher = [
         }
 
         const { publisher_name, publisher_country } = matchedData(req);
-        console.log(publisher_name);
-        console.log(publisher_country);
         return res.redirect("/publishers");
     },
 ];
