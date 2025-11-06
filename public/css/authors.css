@@ -33,11 +33,18 @@
 }
 
 .author-form > div {
-    width: 20%;
+    min-width: 400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
+.author-form > div > input{
+    font-size: 13px;
+    padding: 2px;
+}
+
+
 
 .author-form > div > button {
     padding: 10px;
