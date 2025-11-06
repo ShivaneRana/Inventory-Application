@@ -71,3 +71,19 @@ exports.getAllGenres = async () => {
     );
     return rows;
 };
+
+exports.addGenre = async (genre_name) => {
+    await pool.query("INSERT INTO genres (genre_name) VALUES ($1)",[genre_name]);
+}
+
+exports.addLanguage = async (language_name) => {
+    await pool.query("INSERT INTO languages (language_name) VALUES ($1)",[language_name]);
+}
+
+exports.addPublisher = async (publisher_name,publisher_country) => {
+    await pool.query("INSERT INTO publishers (publisher_name,publisher_country) VALUES ($1,$2)",[publisher_name,publisher_country]);
+}
+
+exports.addAuthor = async (author_fullname,author_gender,author_age,author_country_of_origin) => {
+    await pool.query("INSERT INTO authors (author_fullname,author_gender,author_age,author_country_of_origin) VALUES ($1,$2,$3,$4)",[author_fullname,author_gender,author_age,author_country_of_origin]);
+}
