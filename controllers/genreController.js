@@ -37,6 +37,7 @@ exports.postAddGenre = [
         }
 
         const { genre_name } = matchedData(req);
+        db.addGenre(genre_name);
         return res.status(200).redirect("/genres");
     },
 ];

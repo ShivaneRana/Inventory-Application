@@ -37,6 +37,7 @@ exports.postAddLanguage = [
         }
 
         const { language_name } = matchedData(req);
-        return res.redirect("/languages");
+        db.addLanguage(language_name);
+        return res.status(200).redirect("/languages");
     },
 ];
