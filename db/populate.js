@@ -44,7 +44,7 @@ let create_table = `
     CREATE TABLE IF NOT EXISTS authors(
         author_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         author_fullname varchar(200) NOT NULL DEFAULT 'Unknown',
-        author_gender varchar(200) NOT NULL CHECK (author_gender IN ('male','female','other')),
+        author_gender varchar(200) NOT NULL CHECK (author_gender IN ('Male','Female','Other')),
         author_age INTEGER NOT NULL CHECK (author_age > 0),
         author_country_of_origin varchar(200) NOT NULL
     );
@@ -136,11 +136,11 @@ let insert_data = `
     -- Insert authors
     INSERT INTO authors (author_fullname, author_gender, author_age, author_country_of_origin)
     VALUES
-        ('Eiichiro Oda', 'male', 49, 'Japan'),
-        ('Hajime Isayama', 'male', 38, 'Japan'),
-        ('Koyoharu Gotouge', 'female', 35, 'Japan'),
-        ('Hiromu Arakawa', 'female', 52, 'Japan'),
-        ('Akira Toriyama', 'male', 68, 'Japan')
+        ('Eiichiro Oda', 'Male', 49, 'Japan'),
+        ('Hajime Isayama', 'Male', 38, 'Japan'),
+        ('Koyoharu Gotouge', 'Female', 35, 'Japan'),
+        ('Hiromu Arakawa', 'Female', 52, 'Japan'),
+        ('Akira Toriyama', 'Male', 68, 'Japan')
     ON CONFLICT DO NOTHING;
 
     -- Insert languages
