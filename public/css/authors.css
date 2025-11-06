@@ -39,12 +39,10 @@
     align-items: center;
 }
 
-.author-form > div > input{
+.author-form > div > input {
     font-size: 13px;
     padding: 2px;
 }
-
-
 
 .author-form > div > button {
     padding: 10px;

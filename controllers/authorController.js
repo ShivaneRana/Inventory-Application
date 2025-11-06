@@ -39,13 +39,11 @@ exports.postAddAuthor = [
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             const rows = await db.getAllAuthors();
-            return res
-                .status(404)
-                .render("authors", {
-                    rows: rows,
-                    flag: true,
-                    errors: errors.array(),
-                });
+            return res.status(404).render("authors", {
+                rows: rows,
+                flag: true,
+                errors: errors.array(),
+            });
         }
 
         const { author_name, author_country, author_gender, author_age } =
