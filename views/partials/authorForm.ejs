@@ -1,23 +1,32 @@
-<form action="/add" method="POST">
+<form class="author-form" action="/authors/add" method="POST">
+    <%- include("errors")%>
     <h3>Add Author language</h3>
-    <label for="author_name">Fullname: </label>
-    <input type="text" name="author_name" id="author_name">
+    <div>
+        <label for="author_name">Fullname: </label>
+        <input type="text" name="author_name" id="author_name" placeholder="Enter fullname">
+    </div>
 
-    <label for="author_age">Age: </label>
-    <input type="number" name="author_age" id="author_age">
+    <div>
+        <label for="author_age">Age: </label>
+        <input type="number" name="author_age" id="author_age" placeholder="Enter age">
+    </div>
 
-    <label for="author_gender">Gender: </label>
-    <select name="author_gender" id="author_gender">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-    </select>
+    <div>
+        <label for="author_gender">Gender: </label>
+        <select name="author_gender" id="author_gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
 
-    <label for="author_country">Country of origin: </label>
-    <input type="text" name="author_country" id="author_country">
+    <div>
+        <label for="author_country">Country of origin: </label>
+        <input type="text" name="author_country" id="author_country" placeholder="Enter country of origin">
+    </div>
 
     <div>
         <button>Add</button>
-        <a href="/">Close</a>
+        <a href="/authors">Close</a>
     </div>
 </form>

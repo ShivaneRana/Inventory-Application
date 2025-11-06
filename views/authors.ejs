@@ -11,9 +11,13 @@
 <body>
     <%- include("./partials/navbar")%>
     <div class="main-page">
-        <div class="editor">
-            <a href="">Add new author</a>
-        </div>
+        <% if(locals.flag === true){  %>
+            <%- include("partials/authorForm",{errors:locals.errors})%>
+        <%} else {%>
+            <div class="editor">
+                <a href="/authors/add">Add new author</a>
+            </div>
+        <%}%>
         <%rows.forEach((row,index) => {%>
             <div class="box">
                 <div>
