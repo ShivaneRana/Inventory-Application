@@ -22,9 +22,8 @@ const validationObject = [
         .matches(/^[a-zA-Z\s]+$/)
         .withMessage("Author country can only contain alphabet letters."),
     body("author_gender")
-    .isIn(["Male","Female","Other"])
-    .withMessage("Author gender must be Male,Female or Other")
-
+        .isIn(["Male", "Female", "Other"])
+        .withMessage("Author gender must be Male,Female or Other"),
 ];
 
 exports.getAuthorsList = async (req, res) => {
@@ -50,8 +49,18 @@ exports.postAddAuthor = [
             });
         }
 
-        const { author_fullname, author_country_of_origin, author_gender, author_age } = matchedData(req);
-        db.addAuthor(author_fullname,author_gender,author_age,author_country_of_origin);
+        const {
+            author_fullname,
+            author_country_of_origin,
+            author_gender,
+            author_age,
+        } = matchedData(req);
+        db.addAuthor(
+            author_fullname,
+            author_gender,
+            author_age,
+            author_country_of_origin
+        );
         return res.status(200).redirect("/authors");
     },
 ];
