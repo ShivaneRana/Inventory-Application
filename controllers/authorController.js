@@ -55,12 +55,13 @@ exports.postAddAuthor = [
             author_gender,
             author_age,
         } = matchedData(req);
-        db.addAuthor(
+        await db.addAuthor(
             author_fullname,
             author_gender,
             author_age,
             author_country_of_origin
         );
+
         return res.status(200).redirect("/authors");
     },
 ];
