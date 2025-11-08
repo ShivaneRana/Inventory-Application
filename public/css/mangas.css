@@ -34,26 +34,53 @@
     font-size: 32px;
 }
 
-.box > .manga-detail > .link-holder {
-    width: 400px;
+.link-holder {
+    width: 250px;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
 }
 
-.link-holder > a {
-    width: 200px;
-    font-size: 18px;
-    font-weight: bolder;
-    text-align: center;
-    border-radius: 5px;
+.link-holder > form > button{
     padding: 10px;
-    text-decoration: none;
-    outline: 1px solid black;
+    font-size: 16px;
 }
 
-.link-holder > a:hover {
-    background-color: black;
-    color: white;
+.manga-form {
+    margin: 0px 20px 20px 20px;
+    padding: 10px;
+    outline: 1px solid black;
+    display: flex;
+    align-items: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.manga-form > div {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.manga-form > div > input {
+    font-size: 13px;
+    padding: 2px;
+}
+
+.manga-form > div > textarea{
+    width: 350px;
+    height: 200px;
+    resize: none;
+}
+
+.manga-form > div > button {
+    padding: 10px;
+}
+
+.manga-form > ul {
+    list-style-type: none;
+    color: red;
 }

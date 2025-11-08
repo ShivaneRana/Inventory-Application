@@ -13,9 +13,14 @@
 <body>
     <%- include("./partials/navbar")%>
         <div class="main-page">
-            <div class="editor">
-                <a href="">Add new manga</a>
-            </div>
+            <% if(locals.flag === true){%>
+                <%- include("partials/mangaForm")%>
+            <%} else { %>
+                <div class="editor">
+                    <a href="/mangas/add">Add new manga</a>
+                </div>
+
+            <%}%>
             <%rows.forEach((row,index)=> {%>
                 <div class="box">
                     <img class="cover-image" src="<%= row.manga_image_url && row.manga_image_url.trim() !== '' 
@@ -43,8 +48,12 @@
                                 <%= row.manga_description%>
                             </p>
                             <div class="link-holder">
-                                <a class="edit-link" href="">Edit</a>
-                                <a class="edit-link" href="">Delete</a>
+                                <form action="/mangas/edit/<%= row.manga_id%>" method="POST">
+                                    <button>Edit</button>
+                                </form>
+                                <form action="/mangas/delete/<%= row.manga_id%>" method="POST">
+                                    <button>Delete</button>
+                                </form>
                             </div>
                         </div>
                 </div>

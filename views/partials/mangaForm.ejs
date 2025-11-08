@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/mangas.css" type="text/css">
+</head>
+<body>
+    <form class="manga-form" action="/mangas/add" method="POST">
+        <h3>Manga form</h3>
+        <div>
+            <label for="manga_name">Name: </label>
+            <input type="text" name="manga_name" id="manga_name" placeholder="Enter manga name">
+        </div>
+        <div>
+            <label for="manga_image_url">Image url: </label>
+            <input type="text" name="manga_image_url" id="manga_image_url" placeholder="Enter manga url">
+        </div>
+        <div>
+            <label for="manga_rating">Manga rating: </label>
+            <input type="number" min="0.10" max="10" name="manga_rating" step="0.01" id="manga_rating" placeholder="Enter manga rating">
+        </div>
+        <div>
+            <label for="manga_price">Price: </label>
+            <input type="number" step="0.03" name="manga_price" id="manga_price" placeholder="Enter manga price">
+        </div>
+        <div>
+            <label for="manga_quantity">Quantity: </label>
+            <input type="number" name="manga_quantity" id="manga_quantity" placeholder="Enter manga quantity">
+        </div>
+        <div>
+            <label for="manga_status">Status: </label>
+            <select id="manga_status" name="manga_status">
+                <option value="Completed">Completed</option>
+                <option value="Dropped">Dropped</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Hiatus">Hiatus</option>
+            </select>
+        </div>
+        <div>
+            <label for="manga_description">Description: </label>
+            <textarea placeholder="Enter mangag description"></textarea>
+        </div>
+        <div>
+            <button>Add</button>
+            <button type="reset">Reset</button>
+            <a href="/mangas">Close</a>
+        </div>
+    </form>
+</body>
+</html>

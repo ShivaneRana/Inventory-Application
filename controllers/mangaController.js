@@ -3,5 +3,10 @@ const db = require("../db/queries.js");
 
 exports.getMangasList = async (req, res) => {
     const rows = await db.getAllMangas();
-    res.status(200).render("mangas", { rows: rows });
+    res.status(200).render("mangas", { rows: rows ,flag : false});
+};
+
+exports.getAddManga = async (req, res) => {
+    const rows = await db.getAllMangas();
+    res.status(200).render("mangas", { rows: rows ,flag : true});
 };
