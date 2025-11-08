@@ -19,15 +19,15 @@ SELECT
     STRING_AGG(DISTINCT l.language_name, ', ' ORDER BY l.language_name) AS language_name,
     STRING_AGG(DISTINCT a.author_fullname, ', ' ORDER BY a.author_fullname) AS author_fullname
 FROM mangas m
-JOIN inventories i ON m.manga_id = i.manga_id
-JOIN manga_publishers mp ON m.manga_id = mp.manga_id
-JOIN publishers p ON mp.publisher_id = p.publisher_id
-JOIN manga_genres mg ON m.manga_id = mg.manga_id
-JOIN genres g ON mg.genre_id = g.genre_id
-JOIN manga_languages ml ON m.manga_id = ml.manga_id
-JOIN languages l ON ml.language_id = l.language_id
-JOIN manga_authors ma ON m.manga_id = ma.manga_id
-JOIN authors a ON ma.author_id = a.author_id
+LEFT JOIN inventories i ON m.manga_id = i.manga_id
+LEFT JOIN manga_publishers mp ON m.manga_id = mp.manga_id
+LEFT JOIN publishers p ON mp.publisher_id = p.publisher_id
+LEFT JOIN manga_genres mg ON m.manga_id = mg.manga_id
+LEFT JOIN genres g ON mg.genre_id = g.genre_id
+LEFT JOIN manga_languages ml ON m.manga_id = ml.manga_id
+LEFT JOIN languages l ON ml.language_id = l.language_id
+LEFT JOIN manga_authors ma ON m.manga_id = ma.manga_id
+LEFT JOIN authors a ON ma.author_id = a.author_id
 GROUP BY 
     m.manga_id,
     m.manga_name,
@@ -83,6 +83,10 @@ exports.addLanguage = async (language_name) => {
         language_name,
     ]);
 };
+
+exports.deleteLanguage = async (id) => {
+    await pool.query("DELETE FROM languages WHERE language_id = $1",[id])
+}
 
 exports.addPublisher = async (publisher_name, publisher_country) => {
     await pool.query(
