@@ -6,4 +6,6 @@ const genreRouter = Router();
 genreRouter.get("/", genreController.getGenresList);
 genreRouter.get("/add", genreController.getAddGenre);
 genreRouter.post("/add", genreController.postAddGenre);
+genreRouter.post("/delete/:id",genreController.postDeleteGenre);
+
 module.exports = genreRouter;
