@@ -18,7 +18,7 @@
     align-items: flex-start;
 }
 
-.box > div:nth-child(2){
+.box > div:nth-child(2) {
     display: flex;
     justify-content: center;
     align-items: center;

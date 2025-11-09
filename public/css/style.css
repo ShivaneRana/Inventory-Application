@@ -85,13 +85,13 @@ a:hover {
     align-items: center;
 }
 
-.button-link{
+.button-link {
     font-size: 16px;
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
 
-.button-link:hover{
+.button-link:hover {
     text-decoration: underline;
 }

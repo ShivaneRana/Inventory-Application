@@ -85,8 +85,8 @@ exports.addLanguage = async (language_name) => {
 };
 
 exports.deleteLanguage = async (id) => {
-    await pool.query("DELETE FROM languages WHERE language_id = $1",[id])
-}
+    await pool.query("DELETE FROM languages WHERE language_id = $1", [id]);
+};
 
 exports.addPublisher = async (publisher_name, publisher_country) => {
     await pool.query(

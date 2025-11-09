@@ -42,7 +42,7 @@
     gap: 50px;
 }
 
-.link-holder > form > button{
+.link-holder > form > button {
     padding: 10px;
     font-size: 16px;
 }
@@ -57,7 +57,6 @@
     gap: 20px;
 }
 
-
 .manga-form > div {
     width: 500px;
     display: flex;
@@ -70,7 +69,7 @@
     padding: 2px;
 }
 
-.manga-form > div > textarea{
+.manga-form > div > textarea {
     width: 350px;
     height: 200px;
     resize: none;
