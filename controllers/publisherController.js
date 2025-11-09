@@ -48,8 +48,8 @@ exports.postAddPublisher = [
     },
 ];
 
-exports.postDeletePublisher = async(req,res) => {
-    const {id} = req.params;
+exports.postDeletePublisher = async (req, res) => {
+    const { id } = req.params;
     await db.deletePublisher(id);
     return res.status(200).redirect("/publishers");
-}
+};
