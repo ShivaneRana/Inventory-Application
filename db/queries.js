@@ -12,6 +12,7 @@ SELECT
     m.manga_status,
     m.manga_rating,
     m.manga_image_url,
+    m.manga_description,
     i.inventory_price,
     i.inventory_quantity,
     STRING_AGG(DISTINCT g.genre_name, ', ' ORDER BY g.genre_name) AS genre_name,
