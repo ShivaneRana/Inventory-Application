@@ -99,6 +99,10 @@ exports.addPublisher = async (publisher_name, publisher_country) => {
     );
 };
 
+exports.deletePublisher = async (id) => {
+    await pool.query("DELETE FROM publishers WHERE publisher_id = $1", [id]);
+};
+
 exports.addAuthor = async (
     author_fullname,
     author_gender,
