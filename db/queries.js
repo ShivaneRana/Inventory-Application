@@ -114,3 +114,7 @@ exports.addAuthor = async (
         [author_fullname, author_gender, author_age, author_country_of_origin]
     );
 };
+
+exports.deleteAuthor = async (id) => {
+    await pool.query("DELETE FROM authors WHERE author_id = $1", [id]);
+};

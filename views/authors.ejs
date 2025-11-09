@@ -26,7 +26,12 @@
                     <p>Gender: <%= row.author_gender%></p>
                     <p>Country of origin: <%= row.author_country_of_origin%></p>
                 </div>
-                <a class="edit-link" href="">Edit</a>
+                <div>
+                    <form action="/authors/delete/<%= row.author_id%>" method="POST">
+                        <button class="button-link">Delete</button>
+                    </form>
+                    <a class="edit-link" href="">Edit</a>
+                </div>
             </div>
         <%})%>
     </div>

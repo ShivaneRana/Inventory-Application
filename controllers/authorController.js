@@ -65,3 +65,9 @@ exports.postAddAuthor = [
         return res.status(200).redirect("/authors");
     },
 ];
+
+exports.postDeleteAuthor = async(req,res) => {
+    const {id} = req.params;
+    await db.deleteAuthor(id);
+    res.status(200).redirect("/authors");
+}
