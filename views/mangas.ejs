@@ -33,20 +33,20 @@
                             <h2>
                                 <%=row.manga_name%>
                             </h2>
-                            <p>Authors: <%= row.author_fullname%></p>
-                            <p>Publisher: <%= row.publisher_name%></p>
-                            <p>Rating: <%= row.manga_rating%>
+                            <p>Authors: <%= row.author_fullname || 'Unknown'%></p>
+                            <p>Publisher: <%= row.publisher_name || 'Unknown'%></p>
+                            <p>Rating: <%= row.manga_rating || 'Unknown'%>
                             </p>
-                            <p>Genres: <%= row.genre_name%></p>
-                            <p>Status: <%= row.manga_status%>
+                            <p>Genres: <%= row.genre_name || 'Unknown'%></p>
+                            <p>Status: <%= row.manga_status || 'Unknown'%>
                             </p>
-                            <p>Chapter: <%= row.manga_chapter_number%> | Volume: <%= row.manga_volume_number%>
+                            <p>Chapter: <%= row.manga_chapter_number || 'Unknown'%> | Volume: <%= row.manga_volume_number || 'Unknown'%>
                             </p>
-                            <p>Langages: <%= row.language_name%></p>
-                            <p>Price: $<%= row.inventory_price %></p>
+                            <p>Langages: <%= row.language_name || 'Unknown'%></p>
+                            <p>Price: $<%= row.inventory_price || 'Unknown'%></p>
                             <p>Quantity: <%= row.inventory_quantity !== 0 ? row.inventory_quantity : 'N/A'%></p>
                             <p>
-                                <%= row.manga_description%>
+                                Description: <%= row.manga_description || 'Unknown'%>
                             </p>
                             <div class="link-holder">
                                 <form action="/mangas/edit/<%= row.manga_id%>" method="POST">
