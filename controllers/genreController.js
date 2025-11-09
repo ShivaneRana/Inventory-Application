@@ -42,8 +42,8 @@ exports.postAddGenre = [
     },
 ];
 
-exports.postDeleteGenre = async (req,res) => {
-    const {id} = req.params;
+exports.postDeleteGenre = async (req, res) => {
+    const { id } = req.params;
     await db.deleteGenre(id);
     return res.status(200).redirect("/genres");
-}
+};

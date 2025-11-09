@@ -78,9 +78,9 @@ exports.addGenre = async (genre_name) => {
     ]);
 };
 
-exports.deleteGenre = async(genre_id) => {
-    await pool.query("DELETE FROM genres WHERE genre_id = $1",[genre_id]);
-}
+exports.deleteGenre = async (genre_id) => {
+    await pool.query("DELETE FROM genres WHERE genre_id = $1", [genre_id]);
+};
 
 exports.addLanguage = async (language_name) => {
     await pool.query("INSERT INTO languages (language_name) VALUES ($1)", [
