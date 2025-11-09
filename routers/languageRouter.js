@@ -5,5 +5,6 @@ const languageRouter = Router();
 languageRouter.get("/", languageController.getLanguagesList);
 languageRouter.get("/add", languageController.getAddLanguage);
 languageRouter.post("/add", languageController.postAddLanguage);
+languageRouter.post("/delete/:id", languageController.postDeleteLanguage);
 
 module.exports = languageRouter;

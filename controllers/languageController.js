@@ -41,3 +41,9 @@ exports.postAddLanguage = [
         return res.status(200).redirect("/languages");
     },
 ];
+
+exports.postDeleteLanguage = async(req,res) => {
+    const {id} = req.params;
+    await db.deleteLanguage(id);
+    return res.status(200).redirect("/languages")
+};
