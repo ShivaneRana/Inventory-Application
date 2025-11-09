@@ -25,7 +25,12 @@
                     <h2><%=(index + 1) + ". "%> <%=row.publisher_name%></h2>
                     <p>Country: <%= row.publisher_country%></p>
                 </div>
-                <a class="edit-link" href="">Edit</a>
+                <div>
+                    <form action="/publishers/delete/<%= row.publisher_id %>" method="POST">
+                        <button class="button-link">Delete</button>
+                    </form>
+                    <a class="edit-link" href="">Edit</a>
+                </div>
             </div>
         <%})%>
     </div>
