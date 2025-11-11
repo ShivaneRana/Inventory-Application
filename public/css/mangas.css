@@ -15,14 +15,14 @@
 
 /* manga image */
 .cover-image {
-    width: 400px;
-    height: 450px;
+    min-width: 350px;
+    max-height: 500px;
     outline: 1px solid black;
 }
 
 .box > .manga-detail {
     width: 100%;
-    height: 450px;
+    height: max-content;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -37,12 +37,14 @@
 .link-holder {
     width: 250px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 50px;
+    gap: 10px;
 }
 
 .link-holder > form > button {
+    width: 200px;
     padding: 10px;
     font-size: 16px;
 }
@@ -67,6 +69,7 @@
 .manga-form > div > input {
     font-size: 13px;
     padding: 2px;
+    width: 60%;
 }
 
 .manga-form > div > textarea {

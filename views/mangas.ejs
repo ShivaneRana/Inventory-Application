@@ -43,7 +43,7 @@
                             <p>Chapter: <%= row.manga_chapter_number || 'Unknown'%> | Volume: <%= row.manga_volume_number || 'Unknown'%>
                             </p>
                             <p>Langages: <%= row.language_name || 'Unknown'%></p>
-                            <p>Price: $<%= row.inventory_price || 'Unknown'%></p>
+                            <p>Price: <%= row.inventory_price || 'Unknown'%></p>
                             <p>Quantity: <%= row.inventory_quantity !== 0 ? row.inventory_quantity : 'N/A'%></p>
                             <p>
                                 Description: <%= row.manga_description || 'Unknown'%>

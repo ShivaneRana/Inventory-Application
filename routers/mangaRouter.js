@@ -5,5 +5,7 @@ const mangaRouter = Router();
 
 mangaRouter.get("/", mangaController.getMangasList);
 mangaRouter.get("/add", mangaController.getAddManga);
+mangaRouter.post("/add", mangaController.postAddManga);
+mangaRouter.post("/delete/:id", mangaController.postDeleteManga);
 
 module.exports = mangaRouter;
