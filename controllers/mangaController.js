@@ -23,15 +23,23 @@ exports.postAddManga = async (req, res) => {
         manga_chapter_number,
         manga_volume_number,
     } = req.body;
-    db.addManga(
+
+    await db.addManga(
         manga_name,
         manga_rating,
         manga_description,
         manga_chapter_number,
         manga_volume_number,
         manga_status,
-        manga_image_url
+        manga_image_url,
+        manga_price,
+        manga_quantity
     );
+
+
+
+
+
     return res.status(200).redirect("/mangas");
 };
 
