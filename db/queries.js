@@ -120,9 +120,9 @@ exports.deleteAuthor = async (id) => {
     await pool.query("DELETE FROM authors WHERE author_id = $1", [id]);
 };
 
-exports.deleteManga = async(id) => {
-    await pool.query("DELETE FROM mangas WHERE mangas.manga_id = $1",[id]);
-}
+exports.deleteManga = async (id) => {
+    await pool.query("DELETE FROM mangas WHERE mangas.manga_id = $1", [id]);
+};
 
 exports.addManga = async (
     manga_name,
@@ -131,14 +131,18 @@ exports.addManga = async (
     manga_chapter_number,
     manga_volume_number,
     manga_status,
-    manga_image_url,
-) => {
-    await pool.query("INSERT INTO mangas (manga_name,manga_rating,manga_description,manga_chapter_number,manga_volume_number,manga_status,manga_image_url) VALUES ($1,$2,$3,$4,$5,$6,$7)",[
-    manga_name,
-    manga_rating,
-    manga_description,
-    manga_chapter_number,
-    manga_volume_number,
-    manga_status,
     manga_image_url
-])}
+) => {
+    await pool.query(
+        "INSERT INTO mangas (manga_name,manga_rating,manga_description,manga_chapter_number,manga_volume_number,manga_status,manga_image_url) VALUES ($1,$2,$3,$4,$5,$6,$7)",
+        [
+            manga_name,
+            manga_rating,
+            manga_description,
+            manga_chapter_number,
+            manga_volume_number,
+            manga_status,
+            manga_image_url,
+        ]
+    );
+};

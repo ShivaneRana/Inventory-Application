@@ -12,13 +12,31 @@ exports.getAddManga = async (req, res) => {
 };
 
 exports.postAddManga = async (req, res) => {
-    const {manga_name,manga_image_url,manga_rating,manga_price,manga_quantity,manga_status,manga_description,manga_chapter_number,manga_volume_number} = req.body;
-    db.addManga(manga_name,manga_rating,manga_description,manga_chapter_number,manga_volume_number,manga_status,manga_image_url);
+    const {
+        manga_name,
+        manga_image_url,
+        manga_rating,
+        manga_price,
+        manga_quantity,
+        manga_status,
+        manga_description,
+        manga_chapter_number,
+        manga_volume_number,
+    } = req.body;
+    db.addManga(
+        manga_name,
+        manga_rating,
+        manga_description,
+        manga_chapter_number,
+        manga_volume_number,
+        manga_status,
+        manga_image_url
+    );
     return res.status(200).redirect("/mangas");
 };
 
 exports.postDeleteManga = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     await db.deleteManga(id);
     return res.status(200).redirect("/mangas");
 };
