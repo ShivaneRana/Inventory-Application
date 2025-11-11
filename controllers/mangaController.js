@@ -36,10 +36,6 @@ exports.postAddManga = async (req, res) => {
         manga_quantity
     );
 
-
-
-
-
     return res.status(200).redirect("/mangas");
 };
 

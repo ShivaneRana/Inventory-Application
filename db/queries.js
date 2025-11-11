@@ -134,9 +134,7 @@ exports.addManga = async (
     manga_image_url,
     manga_price,
     manga_quantity
-
 ) => {
-
     await pool.query(
         "INSERT INTO mangas (manga_name,manga_rating,manga_description,manga_chapter_number,manga_volume_number,manga_status,manga_image_url) VALUES ($1,$2,$3,$4,$5,$6,$7)",
         [
@@ -150,11 +148,21 @@ exports.addManga = async (
         ]
     );
 
-    const {rows} = await pool.query("SELECT manga_id FROM mangas WHERE manga_name = $1",[manga_name]);
+    const { rows } = await pool.query(
+        "SELECT manga_id FROM mangas WHERE manga_name = $1",
+        [manga_name]
+    );
     const manga_id = rows[0].manga_id;
-    await this.addInventory(manga_price,manga_quantity,manga_id);
+    await this.addInventory(manga_price, manga_quantity, manga_id);
 };
 
-exports.addInventory = async (inventory_price,inventory_quantity,manga_id) => {
-    await pool.query("INSERT INTO inventories (inventory_price,inventory_quantity,manga_id) VALUES ($1,$2,$3)",[inventory_price,inventory_quantity,manga_id]);
-}
+exports.addInventory = async (
+    inventory_price,
+    inventory_quantity,
+    manga_id
+) => {
+    await pool.query(
+        "INSERT INTO inventories (inventory_price,inventory_quantity,manga_id) VALUES ($1,$2,$3)",
+        [inventory_price, inventory_quantity, manga_id]
+    );
+};
