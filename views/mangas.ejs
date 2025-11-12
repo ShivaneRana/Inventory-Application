@@ -14,7 +14,7 @@
     <%- include("./partials/navbar")%>
         <div class="main-page">
             <% if(locals.flag === true){%>
-                <%- include("partials/mangaForm")%>
+                <%- include("partials/mangaForm",{errors:locals.errors})%>
             <%} else { %>
                 <div class="editor">
                     <a href="/mangas/add">Add new manga</a>
@@ -35,7 +35,7 @@
                             </h2>
                             <p>Authors: <%= row.author_fullname || 'Unknown'%></p>
                             <p>Publisher: <%= row.publisher_name || 'Unknown'%></p>
-                            <p>Rating: <%= row.manga_rating || 'Unknown'%>
+                            <p>Rating: <%= row.manga_rating || 'Unknown'%> / 10
                             </p>
                             <p>Genres: <%= row.genre_name || 'Unknown'%></p>
                             <p>Status: <%= row.manga_status || 'Unknown'%>
@@ -43,10 +43,10 @@
                             <p>Chapter: <%= row.manga_chapter_number || 'Unknown'%> | Volume: <%= row.manga_volume_number || 'Unknown'%>
                             </p>
                             <p>Langages: <%= row.language_name || 'Unknown'%></p>
-                            <p>Price: <%= row.inventory_price || 'Unknown'%></p>
+                            <p>Price: $<%= row.inventory_price || 'N/A'%></p>
                             <p>Quantity: <%= row.inventory_quantity !== 0 ? row.inventory_quantity : 'N/A'%></p>
                             <p>
-                                Description: <%= row.manga_description || 'Unknown'%>
+                                Description: <%= row.manga_description || 'No description'%>
                             </p>
                             <div class="link-holder">
                                 <form action="/mangas/edit/<%= row.manga_id%>" method="POST">
