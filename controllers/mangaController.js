@@ -89,7 +89,9 @@ exports.postAddManga = [
                     publisher_name: item.publisher_name,
                 });
             });
+
             const rows = await db.getAllMangas();
+
             return res.status(400).render("mangas", {
                 rows: rows,
                 flag: true,
