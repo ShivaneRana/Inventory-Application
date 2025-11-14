@@ -57,6 +57,6 @@
 }
 
 .publisher-form > ul {
-    list-style-type: none;
+    margin-left: 15px;
     color: red;
 }

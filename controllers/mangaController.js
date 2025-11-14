@@ -7,12 +7,12 @@ const {
 const db = require("../db/queries.js");
 
 const validationObject = [
-    body("manga_name").trim().notEmpty().withMessage("Name cannot be empty"),
+    body("manga_name").trim().notEmpty().withMessage("Name cannot be empty."),
     body("manga_rating")
         .trim()
         .isFloat({ min: 0, max: 10 })
         .withMessage(
-            "Rating can only contain numerical or floating value between 0.1 or 10"
+            "Rating can only contain numerical or floating value between 0.1 or 10."
         ),
     body("manga_price")
         .trim()
@@ -21,15 +21,15 @@ const validationObject = [
     body("manga_chapter_number")
         .trim()
         .isInt({ min: 1 })
-        .withMessage("Chapter number can only contain numerical value"),
+        .withMessage("Chapter number can only contain numerical value."),
     body("manga_volume_number")
         .trim()
         .isInt({ min: 1 })
-        .withMessage("Volume number can only contain numerical value"),
+        .withMessage("Volume number can only contain numerical value."),
     body("manga_quantity")
         .trim()
         .isInt({ min: 1 })
-        .withMessage("Quantity can only contain numerical value"),
+        .withMessage("Quantity can only contain numerical value."),
 ];
 
 exports.getMangasList = async (req, res) => {
