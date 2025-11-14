@@ -56,16 +56,14 @@ exports.getAddManga = async (req, res) => {
         });
     });
 
-    return res
-        .status(200)
-        .render("mangas", {
-            rows: rows,
-            flag: true,
-            publishers: publishers,
-            authors: authors,
-            genres: await db.getAllGenres(),
-            languages: await db.getAllLanguages(),
-        });
+    return res.status(200).render("mangas", {
+        rows: rows,
+        flag: true,
+        publishers: publishers,
+        authors: authors,
+        genres: await db.getAllGenres(),
+        languages: await db.getAllLanguages(),
+    });
 };
 
 exports.postAddManga = [
