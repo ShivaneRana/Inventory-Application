@@ -42,23 +42,31 @@ exports.getAddManga = async (req, res) => {
     const publishers = [];
     const authors = [];
 
-    (await db.getAllAuthors()).forEach(item => {
+    (await db.getAllAuthors()).forEach((item) => {
         authors.push({
-            author_id:item.author_id,
-            author_fullname: item.author_fullname
-        })
+            author_id: item.author_id,
+            author_fullname: item.author_fullname,
+        });
     });
 
-    (await db.getAllPublishers()).forEach(item => {
+    (await db.getAllPublishers()).forEach((item) => {
         publishers.push({
-            publisher_id:item.publisher_id,
-            publisher_name:item.publisher_name
-        })
-    })
+            publisher_id: item.publisher_id,
+            publisher_name: item.publisher_name,
+        });
+    });
 
-    return res.status(200).render("mangas", { rows: rows, flag: true, publishers: publishers, authors: authors, genres: await db.getAllGenres(), languages: await db.getAllLanguages()});
+    return res
+        .status(200)
+        .render("mangas", {
+            rows: rows,
+            flag: true,
+            publishers: publishers,
+            authors: authors,
+            genres: await db.getAllGenres(),
+            languages: await db.getAllLanguages(),
+        });
 };
-
 
 exports.postAddManga = [
     validationObject,
@@ -68,31 +76,29 @@ exports.postAddManga = [
             const publishers = [];
             const authors = [];
 
-        (await db.getAllAuthors()).forEach(item => {
-        authors.push({
-            author_id:item.author_id,
-            author_fullname: item.author_fullname
-        })
-        });
-
-        (await db.getAllPublishers()).forEach(item => {
-        publishers.push({
-            publisher_id:item.publisher_id,
-            publisher_name:item.publisher_name
-        })
-        })
-            const rows = await db.getAllMangas();
-            return res
-                .status(400)
-                .render("mangas", {
-                    rows: rows,
-                    flag: true,
-                    publishers:publishers,
-                    authors:authors,
-                    genres: await db.getAllGenres(),
-                    languages: await db.getAllLanguages(),
-                    errors: errors.array(),
+            (await db.getAllAuthors()).forEach((item) => {
+                authors.push({
+                    author_id: item.author_id,
+                    author_fullname: item.author_fullname,
                 });
+            });
+
+            (await db.getAllPublishers()).forEach((item) => {
+                publishers.push({
+                    publisher_id: item.publisher_id,
+                    publisher_name: item.publisher_name,
+                });
+            });
+            const rows = await db.getAllMangas();
+            return res.status(400).render("mangas", {
+                rows: rows,
+                flag: true,
+                publishers: publishers,
+                authors: authors,
+                genres: await db.getAllGenres(),
+                languages: await db.getAllLanguages(),
+                errors: errors.array(),
+            });
         }
 
         const {

@@ -72,7 +72,7 @@
     width: 60%;
 }
 
-.checkbox-container{
+.checkbox-container {
     width: max-content;
     max-width: 60%;
     display: flex;
@@ -80,7 +80,7 @@
     align-items: flex-end;
 }
 
-.input-container{
+.input-container {
     width: 100%;
     display: flex;
     justify-content: space-between;
