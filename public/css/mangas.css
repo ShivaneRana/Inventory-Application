@@ -73,17 +73,22 @@
 }
 
 .checkbox-container {
-    width: max-content;
-    max-width: 60%;
+    width: 60%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    column-gap: 10px;
+}
+
+hr{
+    width: 800px;
+    border: 1px dashed black; 
 }
 
 .input-container {
-    width: 100%;
+    width: max-content;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 10px;
 }
 
