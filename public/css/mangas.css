@@ -60,7 +60,7 @@
 }
 
 .manga-form > div {
-    width: 500px;
+    width: 800px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -72,8 +72,23 @@
     width: 60%;
 }
 
+.checkbox-container{
+    width: max-content;
+    max-width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.input-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
 .manga-form > div > textarea {
-    width: 350px;
+    width: 60%;
     height: 200px;
     resize: none;
 }

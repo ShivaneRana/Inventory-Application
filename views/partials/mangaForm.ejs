@@ -45,6 +45,50 @@
             </select>
         </div>
         <div>
+            <label for="manga_author">Author:</label>
+            <div class="checkbox-container">
+                <%authors.forEach(item => {%>
+                    <div class="input-container">
+                        <input type="checkbox" value="<%= item.author_fullname%>" id="manga_authors" name="manga_authors">
+                        <label for="<%= item.author_fullname%>"><%= item.author_fullname %></label>
+                    </div>
+                <%})%>
+            </div>
+        </div>
+        <div>
+            <label for="manga_publisher">Publisher:</label>
+            <div class="checkbox-container">
+                <%publishers.forEach(item => {%>
+                    <div class="input-container">
+                        <input type="checkbox" value="<%= item.publisher_name%>" id="manga_publisher" name="manga_publisher">
+                        <label for="<%= item.publisher_name%>"><%= item.publisher_name%></label>
+                    </div>
+                <%})%>
+            </div>
+        </div>
+        <div>
+            <label for="manga_genre">Genres:</label>
+            <div class="checkbox-container">
+                <%genres.forEach(item => {%>
+                    <div class="input-container">
+                        <input type="checkbox" value="<%= item.genre_name%>" id="manga_genre" name="manga_genre">
+                        <label for="<%= item.genre_name%>"><%= item.genre_name%></label>
+                    </div>
+                <%})%>
+            </div>
+        </div>
+        <div>
+            <label for="manga_languages">Languages:</label>
+            <div class="checkbox-container">
+                <%languages.forEach(item => {%>
+                    <div class="input-container">
+                        <input type="checkbox" value="<%= item.language_name %>" id="manga_language" name="manga_language">
+                        <label for="<%= item.language_name %>"><%= item.language_name%></label>
+                    </div>
+                <%})%>
+            </div>
+        </div>
+        <div>
             <label for="manga_description">Description: </label>
             <textarea name="manga_description" id="manga_description" placeholder="Enter manga description."></textarea>
         </div>
