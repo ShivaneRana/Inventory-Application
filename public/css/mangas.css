@@ -77,7 +77,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    column-gap: 10px;
+    column-gap: 20px;
 }
 
 hr{
@@ -89,7 +89,7 @@ hr{
     width: max-content;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .manga-form > div > textarea {
