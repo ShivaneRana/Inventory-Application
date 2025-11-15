@@ -5,14 +5,27 @@
 </head>
 <body>
     <form class="language-form" action="" method="POST">
-        <h3>Add new language</h3>
+
+        <%if(locals.update){%>
+            <h3>Update language (<%= locals.value.language_name%>)</h3>
+        <%}else{%>
+            <h3>Add new language</h3>
+        <%}%>
         <%- include("errors")%>
         <div>
             <label for="language_name">Enter language: </label>
-            <input type="text" name="language_name" placeholder="Enter language" id="language_name">
+            <%if(locals.update){%>
+                <input value="<%= locals.value.language_name%>" type="text" name="language_name" placeholder="Enter language" id="language_name">
+            <%}else{%>
+                <input type="text" name="language_name" placeholder="Enter language" id="language_name">
+            <%}%>
         </div>
         <div>
-            <button>Add</button>
+            <%if(locals.update){%>
+                <button>Update</button>
+            <%}else{%>
+                <button>Add</button>
+            <%}%>
             <button type="reset">Reset</button>
             <a href="/languages">Close</a>
         </div>

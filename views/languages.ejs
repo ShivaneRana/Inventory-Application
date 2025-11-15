@@ -13,7 +13,9 @@
     <div class="main-page">
 
             <% if(locals.flag) {%>
+
                 <%- include("partials/languageForm",{errors:locals.errors})%>
+
             <% } else{%>
                 <div class="editor">
                     <a href="languages/add">Add new language</a>
@@ -31,7 +33,7 @@
                         <form action="/languages/delete/<%= row.language_id%>" method="POST">
                             <button class="button-link">Delete</button>
                         </form>
-                        <a class="edit-link" href="">Edit</a>
+                        <a class="edit-link" href="/languages/update/<%= row.language_id%>">Edit</a>
                     </div>
                 </div>
                 <%})%>
