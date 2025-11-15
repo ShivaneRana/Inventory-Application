@@ -156,6 +156,7 @@ exports.addManga = async (
     await this.addInventory(manga_price, manga_quantity, manga_id);
 };
 
+// helper function used to insert value into inventories for respective manga
 exports.addInventory = async (
     inventory_price,
     inventory_quantity,
