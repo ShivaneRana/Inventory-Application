@@ -168,6 +168,9 @@ exports.addInventory = async (
     );
 };
 
-exports.updateLanguages = async(id,value) => {
-    await pool.query("UPDATE languages SET language_name = $1 WHERE language_id = $2",[value,id])
-}
+exports.updateLanguages = async (id, value) => {
+    await pool.query(
+        "UPDATE languages SET language_name = $1 WHERE language_id = $2",
+        [value, id]
+    );
+};
