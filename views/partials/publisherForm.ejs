@@ -5,18 +5,34 @@
 </head>
 <body>
     <form class="publisher-form" action="" method="POST">
-        <h3>Add new publisher</h3>
+        <% if(locals.update){ %>
+            <h3>Update Publisher ( <%= locals.value.publisher_name%> )</h3>
+        <% }else{ %>
+            <h3>Add new publisher</h3>
+        <% }%>
         <%- include("errors")%>
         <div>
             <label for="publisher_name">Name: </label>
-            <input type="text" name="publisher_name" placeholder="Enter publisher name" id="publisher_name">
+            <% if(locals.update){ %>
+                <input value="<%= locals.value.publisher_name%>" type="text" name="publisher_name" placeholder="Enter publisher name" id="publisher_name">
+            <% }else{ %>
+                <input type="text" name="publisher_name" placeholder="Enter publisher name" id="publisher_name">
+            <% }%>
         </div>
         <div>
             <label for="publisher_country">Country: </label>
-            <input type="text" name="publisher_country" placeholder="Enter publisher country" id="publisher_country">
+            <% if(locals.update){ %>
+                <input value="<%= locals.value.publisher_country%>" type="text" name="publisher_country" placeholder="Enter publisher country" id="publisher_country">
+            <% }else{ %>
+                <input type="text" name="publisher_country" placeholder="Enter publisher country" id="publisher_country">
+            <% }%>
         </div>
         <div>
-            <button>Add</button>
+            <% if(locals.update){ %>
+                <button>Update</button>
+            <% }else{ %>
+                <button>Add</button>
+            <% }%>
             <button type="reset">Reset</button>
             <a href="/publishers">Close</a>
         </div>

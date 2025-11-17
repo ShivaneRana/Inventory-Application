@@ -29,7 +29,7 @@
                     <form action="/publishers/delete/<%= row.publisher_id %>" method="POST">
                         <button class="button-link">Delete</button>
                     </form>
-                    <a class="edit-link" href="">Edit</a>
+                    <a class="edit-link" href="/publishers/update/<%= row.publisher_id%>">Edit</a>
                 </div>
             </div>
         <%})%>
