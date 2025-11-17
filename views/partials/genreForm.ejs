@@ -3,15 +3,27 @@
 <head>
 </head>
 <body>
-    <form class="genre-form" action="/genres/add" method="POST">
-        <h3>Add new genre</h3>
+    <form class="genre-form" action="" method="POST">
+        <%if(locals.update){%>
+            <h3>Update genre (<%= locals.value.genre_name%>)</h3>
+        <%}else{%>
+            <h3>Add new genre</h3>
+        <%}%>
         <%- include("errors")%>
         <div>
             <label for="genre_name">Name: </label>
-            <input type="text" name="genre_name" id="genre_name" placeholder="Enter new genre">
+            <%if(locals.update){%>
+                <input value="<%= locals.value.genre_name%>" type="text" name="genre_name" id="genre_name" placeholder="Enter new value">
+            <%}else{%>
+                <input type="text" name="genre_name" id="genre_name" placeholder="Enter new genre">
+            <%}%>
         </div>
         <div>
-            <button>Add</button>
+            <%if(locals.update){%>
+                <button>Update</button>
+            <%}else{%>
+                <button>Add</button>
+            <%}%>
             <button type="reset">Reset</button>
             <a href="/genres">Close</a>
         </div>

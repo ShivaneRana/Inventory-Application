@@ -47,3 +47,34 @@ exports.postDeleteGenre = async (req, res) => {
     await db.deleteGenre(id);
     return res.status(200).redirect("/genres");
 };
+
+exports.getUpdateGenre = async(req,res) => {
+    const {id} = req.params;
+    const rows = await db.getAllGenres();
+    const value = (await db.getAllGenres()).find(item => item.genre_id === Number(id));
+    return res.status(200).render("genres", { rows: rows, flag: true ,update:true, value:value});
+}
+
+exports.postUpdateGenre = [
+    validationObject,
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            const rows = await db.getAllGenres();
+            const {id} = req.params;
+            const value = (await db.getAllGenres()).find(item => item.genre_id === Number(id));
+            return res.status(400).render("genres", {
+                rows: rows,
+                flag: true,
+                update:true,
+                value:value,
+                errors: errors.array(),
+            });
+        }
+
+        const {id} = req.params;
+        const { genre_name } = matchedData(req);
+        await db.updateGenre(id,genre_name);
+        return res.status(200).redirect("/genres");
+    },
+];
