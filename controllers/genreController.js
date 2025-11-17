@@ -48,12 +48,21 @@ exports.postDeleteGenre = async (req, res) => {
     return res.status(200).redirect("/genres");
 };
 
-exports.getUpdateGenre = async(req,res) => {
-    const {id} = req.params;
+exports.getUpdateGenre = async (req, res) => {
+    const { id } = req.params;
     const rows = await db.getAllGenres();
-    const value = (await db.getAllGenres()).find(item => item.genre_id === Number(id));
-    return res.status(200).render("genres", { rows: rows, flag: true ,update:true, value:value});
-}
+    const value = (await db.getAllGenres()).find(
+        (item) => item.genre_id === Number(id)
+    );
+    return res
+        .status(200)
+        .render("genres", {
+            rows: rows,
+            flag: true,
+            update: true,
+            value: value,
+        });
+};
 
 exports.postUpdateGenre = [
     validationObject,
@@ -61,20 +70,22 @@ exports.postUpdateGenre = [
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             const rows = await db.getAllGenres();
-            const {id} = req.params;
-            const value = (await db.getAllGenres()).find(item => item.genre_id === Number(id));
+            const { id } = req.params;
+            const value = (await db.getAllGenres()).find(
+                (item) => item.genre_id === Number(id)
+            );
             return res.status(400).render("genres", {
                 rows: rows,
                 flag: true,
-                update:true,
-                value:value,
+                update: true,
+                value: value,
                 errors: errors.array(),
             });
         }
 
-        const {id} = req.params;
+        const { id } = req.params;
         const { genre_name } = matchedData(req);
-        await db.updateGenre(id,genre_name);
+        await db.updateGenre(id, genre_name);
         return res.status(200).redirect("/genres");
     },
 ];

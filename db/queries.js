@@ -176,8 +176,8 @@ exports.updateLanguages = async (id, value) => {
 };
 
 exports.updateGenre = async (id, value) => {
-    await pool.query(
-        "UPDATE genres SET genre_name = $1 WHERE genre_id = $2",
-        [value, id]
-    );
+    await pool.query("UPDATE genres SET genre_name = $1 WHERE genre_id = $2", [
+        value,
+        id,
+    ]);
 };
