@@ -58,14 +58,12 @@ exports.getUpdatePublisher = async (req, res) => {
     const { id } = req.params;
     const rows = await db.getAllPublishers();
     const value = rows.find((item) => item.publisher_id === Number(id));
-    return res
-        .status(200)
-        .render("publishers", {
-            rows: rows,
-            flag: true,
-            update: true,
-            value: value,
-        });
+    return res.status(200).render("publishers", {
+        rows: rows,
+        flag: true,
+        update: true,
+        value: value,
+    });
 };
 
 exports.postUpdatePublisher = [

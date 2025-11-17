@@ -189,7 +189,7 @@ exports.updatePublisher = async (id, name, country) => {
     );
 };
 
-exports.updateAuthor = async (id, fullname,gender,age, country ) => {
+exports.updateAuthor = async (id, fullname, gender, age, country) => {
     await pool.query(
         "UPDATE authors SET author_fullname = $1,author_gender = $2,author_age = $3,author_country_of_origin = $4 WHERE author_id = $5",
         [fullname, gender, age, country, id]

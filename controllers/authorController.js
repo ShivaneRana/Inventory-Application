@@ -72,31 +72,36 @@ exports.postDeleteAuthor = async (req, res) => {
     res.status(200).redirect("/authors");
 };
 
-exports.getUpdateAuthor = async(req,res) => {
-    const {id} = req.params;
+exports.getUpdateAuthor = async (req, res) => {
+    const { id } = req.params;
     const rows = await db.getAllAuthors();
-    const value = rows.find(item => item.author_id === Number(id));
-    res.status(200).render("authors", { rows: rows, flag: true ,update:true,value:value});
-}
+    const value = rows.find((item) => item.author_id === Number(id));
+    res.status(200).render("authors", {
+        rows: rows,
+        flag: true,
+        update: true,
+        value: value,
+    });
+};
 
 exports.postUpdateAuthor = [
     validationObject,
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            const {id} = req.params;
+            const { id } = req.params;
             const rows = await db.getAllAuthors();
-            const value = rows.find(item => item.author_id === Number(id));
+            const value = rows.find((item) => item.author_id === Number(id));
             return res.status(404).render("authors", {
                 rows: rows,
                 flag: true,
-                update:true,
-                value:value,
+                update: true,
+                value: value,
                 errors: errors.array(),
             });
         }
 
-        const {id} = req.params;
+        const { id } = req.params;
 
         const {
             author_fullname,
