@@ -181,3 +181,11 @@ exports.updateGenre = async (id, value) => {
         id,
     ]);
 };
+
+exports.updatePublisher = async (id,name,country) => {
+    await pool.query("UPDATE publishers SET publisher_name = $1,publisher_country = $2 WHERE publisher_id = $3",[
+        name,
+        country,
+        id
+    ]);
+}
