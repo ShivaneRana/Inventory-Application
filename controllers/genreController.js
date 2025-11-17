@@ -54,14 +54,12 @@ exports.getUpdateGenre = async (req, res) => {
     const value = (await db.getAllGenres()).find(
         (item) => item.genre_id === Number(id)
     );
-    return res
-        .status(200)
-        .render("genres", {
-            rows: rows,
-            flag: true,
-            update: true,
-            value: value,
-        });
+    return res.status(200).render("genres", {
+        rows: rows,
+        flag: true,
+        update: true,
+        value: value,
+    });
 };
 
 exports.postUpdateGenre = [
