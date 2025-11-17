@@ -1,32 +1,53 @@
-<form class="author-form" action="/authors/add" method="POST">
-    <h3>Add new author</h3>
+<form class="author-form" action="" method="POST">
+    <%if(locals.update){%>
+        <h3>Update author ( <%= locals.value.author_fullname%> )</h3>
+    <%}else{%>
+        <h3>Add new author</h3>
+    <%}%>
+
     <%- include("errors")%>
     <div>
         <label for="author_fullname">Fullname: </label>
-        <input type="text" name="author_fullname" id="author_fullname" placeholder="Enter fullname">
+        <%if(locals.update){%>
+            <input value="<%= locals.value.author_fullname%>" type="text" name="author_fullname" id="author_fullname" placeholder="Enter fullname">
+        <%}else{%>
+            <input type="text" name="author_fullname" id="author_fullname" placeholder="Enter fullname">
+        <%}%>
     </div>
 
     <div>
         <label for="author_age">Age: </label>
-        <input type="number" name="author_age" id="author_age" placeholder="Enter age">
+        <%if(locals.update){%>
+            <input value="<%= locals.value.author_age%>" type="number" name="author_age" id="author_age" placeholder="Enter age">
+        <%}else{%>
+            <input type="number" name="author_age" id="author_age" placeholder="Enter age">
+        <%}%>
     </div>
 
     <div>
         <label for="author_gender">Gender: </label>
         <select name="author_gender" id="author_gender">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
+            <option <%= locals.value.author_gender === "Male" ? "selected" : ""%> value="Male">Male</option>
+            <option <%= locals.value.author_gender === "Female" ? "selected" : ""%> value="Female">Female</option>
+            <option <%= locals.value.author_gender === "Other" ? "selected" : ""%> value="Other">Other</option>
         </select>
     </div>
 
     <div>
         <label for="author_country_of_origin">Country of origin: </label>
-        <input type="text" name="author_country_of_origin" id="author_country_of_origin" placeholder="Enter country of origin">
+        <%if(locals.update){%>
+            <input value="<%= locals.value.author_country_of_origin%>" type="text" name="author_country_of_origin" id="author_country_of_origin" placeholder="Enter country of origin">
+        <%}else{%>
+            <input type="text" name="author_country_of_origin" id="author_country_of_origin" placeholder="Enter country of origin">
+        <%}%>
     </div>
 
     <div>
-        <button>Add</button>
+        <%if(locals.update){%>
+            <button>Update</button>
+        <%}else{%>
+            <button>Add</button>
+        <%}%>
         <button type="reset">Reset</button>
         <a href="/authors">Close</a>
     </div>

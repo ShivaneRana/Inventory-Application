@@ -71,3 +71,48 @@ exports.postDeleteAuthor = async (req, res) => {
     await db.deleteAuthor(id);
     res.status(200).redirect("/authors");
 };
+
+exports.getUpdateAuthor = async(req,res) => {
+    const {id} = req.params;
+    const rows = await db.getAllAuthors();
+    const value = rows.find(item => item.author_id === Number(id));
+    res.status(200).render("authors", { rows: rows, flag: true ,update:true,value:value});
+}
+
+exports.postUpdateAuthor = [
+    validationObject,
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            const {id} = req.params;
+            const rows = await db.getAllAuthors();
+            const value = rows.find(item => item.author_id === Number(id));
+            return res.status(404).render("authors", {
+                rows: rows,
+                flag: true,
+                update:true,
+                value:value,
+                errors: errors.array(),
+            });
+        }
+
+        const {id} = req.params;
+
+        const {
+            author_fullname,
+            author_country_of_origin,
+            author_gender,
+            author_age,
+        } = matchedData(req);
+
+        await db.updateAuthor(
+            id,
+            author_fullname,
+            author_gender,
+            author_age,
+            author_country_of_origin
+        );
+
+        return res.status(200).redirect("/authors");
+    },
+];

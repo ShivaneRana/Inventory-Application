@@ -30,7 +30,7 @@
                     <form action="/authors/delete/<%= row.author_id%>" method="POST">
                         <button class="button-link">Delete</button>
                     </form>
-                    <a class="edit-link" href="">Edit</a>
+                    <a class="edit-link" href="/authors/update/<%= row.author_id%>">Edit</a>
                 </div>
             </div>
         <%})%>
