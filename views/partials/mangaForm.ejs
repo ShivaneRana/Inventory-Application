@@ -49,7 +49,7 @@
             <div class="checkbox-container">
                 <%authors.forEach(item => {%>
                     <div class="input-container">
-                        <input type="checkbox" value="<%= item.author_fullname%>" id="manga_authors" name="manga_authors">
+                        <input type="checkbox" value="<%= item.author_fullname%>" id="manga_author" name="manga_author">
                         <label for="<%= item.author_fullname%>"><%= item.author_fullname %></label>
                     </div>
                 <%})%>
@@ -69,7 +69,7 @@
         </div>
         <hr>
         <div>
-            <label for="manga_genre">Genres:</label>
+            <label for="manga_genre">Genre:</label>
             <div class="checkbox-container">
                 <%genres.forEach(item => {%>
                     <div class="input-container">
@@ -81,7 +81,7 @@
         </div>
         <hr>
         <div>
-            <label for="manga_languages">Languages:</label>
+            <label for="manga_language">Language:</label>
             <div class="checkbox-container">
                 <%languages.forEach(item => {%>
                     <div class="input-container">
