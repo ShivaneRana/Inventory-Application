@@ -83,6 +83,13 @@ exports.deleteGenre = async (genre_id) => {
     await pool.query("DELETE FROM genres WHERE genre_id = $1", [genre_id]);
 };
 
+exports.updateGenre = async (id, value) => {
+    await pool.query("UPDATE genres SET genre_name = $1 WHERE genre_id = $2", [
+        value,
+        id,
+    ]);
+};
+
 exports.addLanguage = async (language_name) => {
     await pool.query("INSERT INTO languages (language_name) VALUES ($1)", [
         language_name,
@@ -91,6 +98,13 @@ exports.addLanguage = async (language_name) => {
 
 exports.deleteLanguage = async (id) => {
     await pool.query("DELETE FROM languages WHERE language_id = $1", [id]);
+};
+
+exports.updateLanguages = async (id, value) => {
+    await pool.query(
+        "UPDATE languages SET language_name = $1 WHERE language_id = $2",
+        [value, id]
+    );
 };
 
 exports.addPublisher = async (publisher_name, publisher_country) => {
@@ -102,6 +116,13 @@ exports.addPublisher = async (publisher_name, publisher_country) => {
 
 exports.deletePublisher = async (id) => {
     await pool.query("DELETE FROM publishers WHERE publisher_id = $1", [id]);
+};
+
+exports.updatePublisher = async (id, name, country) => {
+    await pool.query(
+        "UPDATE publishers SET publisher_name = $1,publisher_country = $2 WHERE publisher_id = $3",
+        [name, country, id]
+    );
 };
 
 exports.addAuthor = async (
@@ -118,6 +139,13 @@ exports.addAuthor = async (
 
 exports.deleteAuthor = async (id) => {
     await pool.query("DELETE FROM authors WHERE author_id = $1", [id]);
+};
+
+exports.updateAuthor = async (id, fullname, gender, age, country) => {
+    await pool.query(
+        "UPDATE authors SET author_fullname = $1,author_gender = $2,author_age = $3,author_country_of_origin = $4 WHERE author_id = $5",
+        [fullname, gender, age, country, id]
+    );
 };
 
 exports.deleteManga = async (id) => {
@@ -152,6 +180,7 @@ exports.addManga = async (
         "SELECT manga_id FROM mangas WHERE manga_name = $1",
         [manga_name]
     );
+
     const manga_id = rows[0].manga_id;
     await this.addInventory(manga_price, manga_quantity, manga_id);
 };
@@ -165,33 +194,5 @@ exports.addInventory = async (
     await pool.query(
         "INSERT INTO inventories (inventory_price,inventory_quantity,manga_id) VALUES ($1,$2,$3)",
         [inventory_price, inventory_quantity, manga_id]
-    );
-};
-
-exports.updateLanguages = async (id, value) => {
-    await pool.query(
-        "UPDATE languages SET language_name = $1 WHERE language_id = $2",
-        [value, id]
-    );
-};
-
-exports.updateGenre = async (id, value) => {
-    await pool.query("UPDATE genres SET genre_name = $1 WHERE genre_id = $2", [
-        value,
-        id,
-    ]);
-};
-
-exports.updatePublisher = async (id, name, country) => {
-    await pool.query(
-        "UPDATE publishers SET publisher_name = $1,publisher_country = $2 WHERE publisher_id = $3",
-        [name, country, id]
-    );
-};
-
-exports.updateAuthor = async (id, fullname, gender, age, country) => {
-    await pool.query(
-        "UPDATE authors SET author_fullname = $1,author_gender = $2,author_age = $3,author_country_of_origin = $4 WHERE author_id = $5",
-        [fullname, gender, age, country, id]
     );
 };
