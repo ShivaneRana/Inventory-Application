@@ -11,7 +11,7 @@ let DATABASE_URL;
 let create_table = `
     CREATE TABLE IF NOT EXISTS mangas(
        manga_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-       manga_name varchar(300) NOT NULL,
+       manga_name varchar(300) NOT NULL UNIQUE,
        manga_rating NUMERIC(3,1) NOT NULL CHECK (manga_rating BETWEEN 0 AND 10),
        manga_description TEXT DEFAULT 'No description',
        manga_chapter_number INTEGER NOT NULL DEFAULT 0,
