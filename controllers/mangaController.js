@@ -1,8 +1,4 @@
-const {
-    body,
-    validationResult,
-    matchedData,
-} = require("express-validator");
+const { body, validationResult, matchedData } = require("express-validator");
 
 const db = require("../db/queries.js");
 
@@ -117,9 +113,8 @@ exports.postAddManga = [
             manga_author,
             manga_publisher,
             manga_genre,
-            manga_language
+            manga_language,
         } = req.body;
-
 
         await db.addManga(
             manga_name,
