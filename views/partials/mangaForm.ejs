@@ -9,7 +9,7 @@
         <%- include("errors")%>
         <div>
             <label for="manga_name">Name: </label>
-            <input type="text" name="manga_name" id="manga_name" placeholder="Enter manga name.">
+            <input required type="text" name="manga_name" id="manga_name" placeholder="Enter manga name.">
         </div>
         <div>
             <label for="manga_image_url">Image url: </label>
@@ -17,23 +17,23 @@
         </div>
         <div>
             <label for="manga_rating">Manga rating: </label>
-            <input type="number" step="any" name="manga_rating" id="manga_rating" min="0.1" max="10" placeholder="Enter manga rating.">
+            <input required type="number" step="any" name="manga_rating" id="manga_rating" min="0.1" max="10" placeholder="Enter manga rating.">
         </div>
         <div>
             <label for="manga_price">Price: </label>
-            <input type="number" step="any" name="manga_price" id="manga_price" min="0.1" placeholder="Enter manga price.">
+            <input required type="number" step="any" name="manga_price" id="manga_price" min="0.1" placeholder="Enter manga price.">
         </div>
         <div>
             <label for="manga_chapter_number">Total chapters: </label>
-            <input type="number" step="1" name="manga_chapter_number" min="1" id="manga_chapter_number" placeholder="Enter manga total chapter.">
+            <input required type="number" step="1" name="manga_chapter_number" min="1" id="manga_chapter_number" placeholder="Enter manga total chapter.">
         </div>
         <div>
             <label for="manga_volume_number">Total volumes: </label>
-            <input type="number" step="1" name="manga_volume_number" min="1" id="manga_volume_number" placeholder="Enter manga total volume number.">
+            <input required type="number" step="1" name="manga_volume_number" min="1" id="manga_volume_number" placeholder="Enter manga total volume number.">
         </div>
         <div>
             <label for="manga_quantity">Quantity: </label>
-            <input type="number" step="1" name="manga_quantity" id="manga_quantity" min="1" placeholder="Enter manga quantity.">
+            <input required type="number" step="1" name="manga_quantity" id="manga_quantity" min="1" placeholder="Enter manga quantity.">
         </div>
         <div>
             <label for="manga_status">Status: </label>
