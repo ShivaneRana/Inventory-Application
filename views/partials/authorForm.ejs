@@ -14,18 +14,18 @@
     <div>
         <label for="author_fullname">Fullname: </label>
         <%if(locals.update){%>
-            <input value="<%= locals.value.author_fullname%>" type="text" name="author_fullname" id="author_fullname" placeholder="Enter fullname">
+            <input required value="<%= locals.value.author_fullname%>" type="text" name="author_fullname" id="author_fullname" placeholder="Enter fullname">
         <%}else{%>
-            <input type="text" name="author_fullname" id="author_fullname" placeholder="Enter fullname">
+            <input required type="text" name="author_fullname" id="author_fullname" placeholder="Enter fullname">
         <%}%>
     </div>
 
     <div>
         <label for="author_age">Age: </label>
         <%if(locals.update){%>
-            <input value="<%= locals.value.author_age%>" type="number" name="author_age" id="author_age" placeholder="Enter age">
+            <input required value="<%= locals.value.author_age%>" type="number" name="author_age" id="author_age" placeholder="Enter age">
         <%}else{%>
-            <input type="number" name="author_age" id="author_age" placeholder="Enter age">
+            <input required type="number" name="author_age" id="author_age" placeholder="Enter age">
         <%}%>
     </div>
 
@@ -41,9 +41,9 @@
     <div>
         <label for="author_country_of_origin">Country of origin: </label>
         <%if(locals.update){%>
-            <input value="<%= locals.value.author_country_of_origin%>" type="text" name="author_country_of_origin" id="author_country_of_origin" placeholder="Enter country of origin">
+            <input required value="<%= locals.value.author_country_of_origin%>" type="text" name="author_country_of_origin" id="author_country_of_origin" placeholder="Enter country of origin">
         <%}else{%>
-            <input type="text" name="author_country_of_origin" id="author_country_of_origin" placeholder="Enter country of origin">
+            <input required type="text" name="author_country_of_origin" id="author_country_of_origin" placeholder="Enter country of origin">
         <%}%>
     </div>
 
