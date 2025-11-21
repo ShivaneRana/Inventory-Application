@@ -161,10 +161,14 @@ exports.addManga = async (
     manga_status,
     manga_image_url,
     manga_price,
-    manga_quantity
+    manga_quantity,
+    manga_author,
+    manga_publisher,
+    manga_genre,
+    manga_language
 ) => {
-    await pool.query(
-        "INSERT INTO mangas (manga_name,manga_rating,manga_description,manga_chapter_number,manga_volume_number,manga_status,manga_image_url) VALUES ($1,$2,$3,$4,$5,$6,$7)",
+    const { rows } = await pool.query(
+        "INSERT INTO mangas (manga_name,manga_rating,manga_description,manga_chapter_number,manga_volume_number,manga_status,manga_image_url) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING manga_id",
         [
             manga_name,
             manga_rating,
@@ -176,13 +180,12 @@ exports.addManga = async (
         ]
     );
 
-    const { rows } = await pool.query(
-        "SELECT manga_id FROM mangas WHERE manga_name = $1",
-        [manga_name]
-    );
-
     const manga_id = rows[0].manga_id;
-    await this.addInventory(manga_price, manga_quantity, manga_id);
+    await exports.addManga_authors(manga_id, manga_author);
+    await exports.addManga_genres(manga_id,manga_genre);
+    await exports.addManga_languages(manga_id,manga_language);
+    await exports.addManga_publishers(manga_id,manga_publisher);
+    await exports.addInventory(manga_price, manga_quantity, manga_id);
 };
 
 // helper function used to insert value into inventories for respective manga
@@ -196,3 +199,63 @@ exports.addInventory = async (
         [inventory_price, inventory_quantity, manga_id]
     );
 };
+
+exports.addManga_authors = async(manga_id,author_array) => {
+    const rows = await this.getAllAuthors();
+    
+    if(typeof author_array === "string"){
+        author_array = [author_array];
+    }
+
+    const authorSet = new Set(author_array);
+    const promises = rows.filter(item => authorSet.has(item.author_fullname)).map(async item =>{
+            await pool.query("INSERT INTO manga_authors (manga_id,author_id) VALUES ($1,$2)",[manga_id,item.author_id]);
+    })
+
+    await Promise.all(promises)
+}
+
+exports.addManga_genres = async(manga_id,genre_array) => {
+    const rows = await this.getAllGenres();
+    
+    if(typeof genre_array === "string"){
+        author_array = [genre_array];
+    }
+
+    const genreSet = new Set(genre_array);
+    const promises = rows.filter(item => genreSet.has(item.genre_name)).map(async item =>{
+            await pool.query("INSERT INTO manga_genres (manga_id,genre_id) VALUES ($1,$2)",[manga_id,item.genre_id]);
+    })
+
+    await Promise.all(promises)
+}
+
+exports.addManga_languages = async(manga_id,language_array) => {
+    const rows = await this.getAllLanguages();
+    
+    if(typeof language_array === "string"){
+        language_array = [language_array];
+    }
+
+    const languageSet = new Set(language_array);
+    const promises = rows.filter(item => languageSet.has(item.language_name)).map(async item =>{
+            await pool.query("INSERT INTO manga_languages (manga_id,language_id) VALUES ($1,$2)",[manga_id,item.language_id]);
+    })
+
+    await Promise.all(promises)
+}
+
+exports.addManga_publishers = async(manga_id,publisher_array) => {
+    const rows = await this.getAllPublishers();
+    
+    if(typeof publisher_array === "string"){
+        publisher_array = [publisher_array];
+    }
+
+    const publisherSet = new Set(publisher_array);
+    const promises = rows.filter(item => publisherSet.has(item.publisher_name)).map(async item =>{
+            await pool.query("INSERT INTO manga_publishers (manga_id,publisher_id) VALUES ($1,$2)",[manga_id,item.publisher_id]);
+    })
+
+    await Promise.all(promises)
+}
