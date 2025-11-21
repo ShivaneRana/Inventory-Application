@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="/css/publishers.css" type="text/css">
 </head>
+<script src="/jss/script.js" defer></script>
 <body>
     <form class="publisher-form" action="" method="POST">
         <% if(locals.update){ %>
@@ -14,17 +15,17 @@
         <div>
             <label for="publisher_name">Name: </label>
             <% if(locals.update){ %>
-                <input value="<%= locals.value.publisher_name%>" type="text" name="publisher_name" placeholder="Enter publisher name" id="publisher_name">
+                <input required value="<%= locals.value.publisher_name%>" type="text" name="publisher_name" placeholder="Enter publisher name" id="publisher_name">
             <% }else{ %>
-                <input type="text" name="publisher_name" placeholder="Enter publisher name" id="publisher_name">
+                <input required type="text" name="publisher_name" placeholder="Enter publisher name" id="publisher_name">
             <% }%>
         </div>
         <div>
             <label for="publisher_country">Country: </label>
             <% if(locals.update){ %>
-                <input value="<%= locals.value.publisher_country%>" type="text" name="publisher_country" placeholder="Enter publisher country" id="publisher_country">
+                <input required value="<%= locals.value.publisher_country%>" type="text" name="publisher_country" placeholder="Enter publisher country" id="publisher_country">
             <% }else{ %>
-                <input type="text" name="publisher_country" placeholder="Enter publisher country" id="publisher_country">
+                <input required type="text" name="publisher_country" placeholder="Enter publisher country" id="publisher_country">
             <% }%>
         </div>
         <div>
