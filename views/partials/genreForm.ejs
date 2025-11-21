@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 </head>
+<script src="/jss/script.js" defer></script>
 <body>
     <form class="genre-form" action="" method="POST">
         <%if(locals.update){%>
@@ -13,9 +14,9 @@
         <div>
             <label for="genre_name">Name: </label>
             <%if(locals.update){%>
-                <input value="<%= locals.value.genre_name%>" type="text" name="genre_name" id="genre_name" placeholder="Enter new value">
+                <input required value="<%= locals.value.genre_name%>" type="text" name="genre_name" id="genre_name" placeholder="Enter new value">
             <%}else{%>
-                <input type="text" name="genre_name" id="genre_name" placeholder="Enter new genre">
+                <input required type="text" name="genre_name" id="genre_name" placeholder="Enter new genre">
             <%}%>
         </div>
         <div>

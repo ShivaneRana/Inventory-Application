@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="/css/languages.css" type="text/css">
 </head>
+<script defer src="/jss/script.js"></script>
 <body>
     <form class="language-form" action="" method="POST">
 
@@ -15,9 +16,9 @@
         <div>
             <label for="language_name">Enter language: </label>
             <%if(locals.update){%>
-                <input value="<%= locals.value.language_name%>" type="text" name="language_name" placeholder="Enter language" id="language_name">
+                <input required value="<%= locals.value.language_name%>" type="text" name="language_name" placeholder="Enter language" id="language_name">
             <%}else{%>
-                <input type="text" name="language_name" placeholder="Enter language" id="language_name">
+                <input required type="text" name="language_name" placeholder="Enter language" id="language_name">
             <%}%>
         </div>
         <div>
@@ -30,7 +31,6 @@
             <a href="/languages">Close</a>
         </div>
     </form>
-
 </body>
 
 </html>
