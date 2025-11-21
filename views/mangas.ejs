@@ -47,9 +47,9 @@
                                 Description: <%= row.manga_description || 'No description'%>
                             </p>
                             <div class="link-holder">
-                                <form action="/mangas/edit/<%= row.manga_id%>" method="POST">
+                                <a href="/mangas/update/<%= row.manga_id%>">
                                     <button>Edit</button>
-                                </form>
+                                </a>
                                 <form action="/mangas/delete/<%= row.manga_id%>" method="POST">
                                     <button>Delete</button>
                                 </form>
