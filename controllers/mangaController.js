@@ -1,9 +1,9 @@
 const {
     body,
-    param,
     validationResult,
     matchedData,
 } = require("express-validator");
+
 const db = require("../db/queries.js");
 
 const validationObject = [
@@ -101,17 +101,25 @@ exports.postAddManga = [
             });
         }
 
-        const {
+        let {
             manga_name,
             manga_image_url,
             manga_rating,
             manga_price,
             manga_quantity,
-            manga_status,
             manga_description,
             manga_chapter_number,
             manga_volume_number,
+        } = matchedData(req);
+
+        let {
+            manga_status,
+            manga_author,
+            manga_publisher,
+            manga_genre,
+            manga_language
         } = req.body;
+
 
         await db.addManga(
             manga_name,
@@ -122,7 +130,11 @@ exports.postAddManga = [
             manga_status,
             manga_image_url,
             manga_price,
-            manga_quantity
+            manga_quantity,
+            manga_author,
+            manga_publisher,
+            manga_genre,
+            manga_language
         );
 
         return res.status(200).redirect("/mangas");
