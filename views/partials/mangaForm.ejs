@@ -4,44 +4,76 @@
     <link rel="stylesheet" href="/css/mangas.css" type="text/css">
 </head>
 <body>
-    <form class="manga-form" action="/mangas/add" method="POST">
-        <h3>Add new manga</h3>
+    <form class="manga-form" action="" method="POST">
+        <% if(locals.update){%>
+            <h3>Update manga ( <%= locals.value.manga_name%> )</h3>
+        <%}else{%>
+            <h3>Add new manga</h3>
+        <%}%>
         <%- include("errors")%>
         <div>
             <label for="manga_name">Name: </label>
-            <input required type="text" name="manga_name" id="manga_name" placeholder="Enter manga name.">
+            <% if(locals.update){%>
+                <input required value="<%= locals.value.manga_name%>" type="text" name="manga_name" id="manga_name" placeholder="Enter manga name.">
+            <%}else{%>
+                <input required type="text" name="manga_name" id="manga_name" placeholder="Enter manga name.">
+            <%}%>
         </div>
         <div>
             <label for="manga_image_url">Image url: </label>
-            <input type="text" name="manga_image_url" id="manga_image_url" placeholder="Enter manga url.">
+            <% if(locals.update){%>
+                <input type="text" value="<%= locals.value.manga_image_url%>" name="manga_image_url" id="manga_image_url" placeholder="Enter manga url.">
+            <%}else{%>
+                <input type="text" name="manga_image_url" id="manga_image_url" placeholder="Enter manga url.">
+            <%}%>
         </div>
         <div>
             <label for="manga_rating">Manga rating: </label>
-            <input required type="number" step="any" name="manga_rating" id="manga_rating" min="0.1" max="10" placeholder="Enter manga rating.">
+            <% if(locals.update){%>
+                <input required value="<%= locals.value.manga_rating%>" type="number" step="any" name="manga_rating" id="manga_rating" min="0.1" max="10" placeholder="Enter manga rating.">
+            <%}else{%>
+                <input required type="number" step="any" name="manga_rating" id="manga_rating" min="0.1" max="10" placeholder="Enter manga rating.">
+            <%}%>
         </div>
         <div>
             <label for="manga_price">Price: </label>
-            <input required type="number" step="any" name="manga_price" id="manga_price" min="0.1" placeholder="Enter manga price.">
+            <% if(locals.update){%>
+                <input required value="<%= locals.value.inventory_price%>" type="number" step="any" name="manga_price" id="manga_price" min="0.1" placeholder="Enter manga price.">
+            <%}else{%>
+                <input required type="number" step="any" name="manga_price" id="manga_price" min="0.1" placeholder="Enter manga price.">
+            <%}%>
         </div>
         <div>
             <label for="manga_chapter_number">Total chapters: </label>
-            <input required type="number" step="1" name="manga_chapter_number" min="1" id="manga_chapter_number" placeholder="Enter manga total chapter.">
+            <% if(locals.update){%>
+                <input required type="number" value="<%= locals.value.manga_chapter_number %>" step="1" name="manga_chapter_number" min="1" id="manga_chapter_number" placeholder="Enter manga total chapter.">
+            <%}else{%>
+                <input required type="number" step="1" name="manga_chapter_number" min="1" id="manga_chapter_number" placeholder="Enter manga total chapter.">
+            <%}%>
         </div>
         <div>
             <label for="manga_volume_number">Total volumes: </label>
-            <input required type="number" step="1" name="manga_volume_number" min="1" id="manga_volume_number" placeholder="Enter manga total volume number.">
+            <% if(locals.update){%>
+                <input required value="<%= locals.value.manga_volume_number %>" type="number" step="1" name="manga_volume_number" min="1" id="manga_volume_number" placeholder="Enter manga total volume number.">
+            <%}else{%>
+                <input required type="number" step="1" name="manga_volume_number" min="1" id="manga_volume_number" placeholder="Enter manga total volume number.">
+            <%}%>
         </div>
         <div>
             <label for="manga_quantity">Quantity: </label>
-            <input required type="number" step="1" name="manga_quantity" id="manga_quantity" min="1" placeholder="Enter manga quantity.">
+            <% if(locals.update){%>
+                <input required value="<%= locals.value.inventory_quantity %>" type="number" step="1" name="manga_quantity" id="manga_quantity" min="1" placeholder="Enter manga quantity.">
+            <%}else{%>
+                <input required type="number" step="1" name="manga_quantity" id="manga_quantity" min="1" placeholder="Enter manga quantity.">
+            <%}%>
         </div>
         <div>
             <label for="manga_status">Status: </label>
             <select id="manga_status" name="manga_status">
-                <option value="Completed">Completed</option>
-                <option value="Dropped">Dropped</option>
-                <option value="Ongoing">Ongoing</option>
-                <option value="Hiatus">Hiatus</option>
+                <option <%= locals.value?.manga_status === 'Completed' ? 'selected' : '' %> value="Completed">Completed</option>
+                <option <%= locals.value?.manga_status === 'Dropped' ? 'selected' : '' %> value="Dropped">Dropped</option>
+                <option <%= locals.value?.manga_status === 'Ongoing' ? 'selected' : '' %> value="Ongoing">Ongoing</option>
+                <option <%= locals.value?.manga_status === 'Hiatus' ? 'selected' : '' %> value="Hiatus">Hiatus</option>
             </select>
         </div>
         <div>
@@ -49,7 +81,7 @@
             <div class="checkbox-container">
                 <%authors.forEach(item => {%>
                     <div class="input-container">
-                        <input type="checkbox" value="<%= item.author_fullname%>" id="manga_author" name="manga_author">
+                        <input <%= locals.authorSet.has(item.author_fullname) ? "checked" : "" %> type="checkbox" value="<%= item.author_fullname%>" id="manga_author" name="manga_author">
                         <label for="<%= item.author_fullname%>"><%= item.author_fullname %></label>
                     </div>
                 <%})%>
@@ -61,7 +93,7 @@
             <div class="checkbox-container">
                 <%publishers.forEach(item => {%>
                     <div class="input-container">
-                        <input type="checkbox" value="<%= item.publisher_name%>" id="manga_publisher" name="manga_publisher">
+                        <input <%= locals.publisherSet.has(item.publisher_name) ? "checked" : "" %> type="checkbox" value="<%= item.publisher_name%>" id="manga_publisher" name="manga_publisher">
                         <label for="<%= item.publisher_name%>"><%= item.publisher_name%></label>
                     </div>
                 <%})%>
@@ -73,7 +105,7 @@
             <div class="checkbox-container">
                 <%genres.forEach(item => {%>
                     <div class="input-container">
-                        <input type="checkbox" value="<%= item.genre_name%>" id="manga_genre" name="manga_genre">
+                        <input <%= locals.genreSet.has(item.genre_name) ? "checked" : "" %> type="checkbox" value="<%= item.genre_name%>" id="manga_genre" name="manga_genre">
                         <label for="<%= item.genre_name%>"><%= item.genre_name%></label>
                     </div>
                 <%})%>
@@ -85,7 +117,7 @@
             <div class="checkbox-container">
                 <%languages.forEach(item => {%>
                     <div class="input-container">
-                        <input type="checkbox" value="<%= item.language_name %>" id="manga_language" name="manga_language">
+                        <input <%= locals.languageSet.has(item.language_name) ? "checked" : "" %> type="checkbox" value="<%= item.language_name %>" id="manga_language" name="manga_language">
                         <label for="<%= item.language_name %>"><%= item.language_name%></label>
                     </div>
                 <%})%>
@@ -94,10 +126,18 @@
         <hr>
         <div>
             <label for="manga_description">Description: </label>
-            <textarea name="manga_description" id="manga_description" placeholder="Enter manga description."></textarea>
+            <% if(locals.update){%>
+                <textarea name="manga_description" id="manga_description" placeholder="Enter manga description."><%= locals.value.manga_description %></textarea>
+            <%}else{%>
+                <textarea name="manga_description" id="manga_description" placeholder="Enter manga description."></textarea>
+            <%}%>
         </div>
         <div>
-            <button>Add</button>
+            <% if(locals.update){%>
+                <button>Update</button>
+            <%}else{%>
+                <button>Add</button>
+            <%}%>
             <button type="reset">Reset</button>
             <a href="/mangas">Close</a>
         </div>
