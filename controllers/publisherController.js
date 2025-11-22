@@ -10,9 +10,22 @@ validationObject = [
     body("publisher_name")
         .trim()
         .matches(/^[a-zA-Z0-9\s]+$/)
-        .withMessage(
-            "Publisher name only contain alphabet letters or numbers."
-        ),
+        .withMessage("Publisher name only contain alphabet letters or numbers.")
+        .custom(async(value,{req}) => {
+            const {id} = req.params;
+            const rows = await db.getAllPublishers();
+            const result = rows.find(publisher => publisher.publisher_name === value);
+
+            if(!result){
+                return true;
+            }
+
+            if(result.publisher_id === Number(id)){
+                return true;
+            }
+
+            throw new Error("Duplicate publisher are not allowed.");
+        }),
     body("publisher_country")
         .trim()
         .matches(/^[a-zA-Z\s]+$/)

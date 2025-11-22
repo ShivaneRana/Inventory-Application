@@ -3,7 +3,23 @@ const { body, validationResult, matchedData } = require("express-validator");
 const db = require("../db/queries.js");
 
 const validationObject = [
-    body("manga_name").trim().notEmpty().withMessage("Name cannot be empty."),
+    body("manga_name").trim().notEmpty().withMessage("Name cannot be empty.")
+        .custom(async(value,{req}) => {
+            const {id} = req.params;
+            const rows = await db.getAllMangas();
+            const result = rows.find(manga => manga.manga_name === value);
+
+            if(!result){
+                return true;
+            }
+            
+            if(result.manga_id === Number(id)){
+                return true;
+            }
+
+            throw new Error("Duplicate manga are not allowed.");
+        }),
+
     body("manga_rating")
         .trim()
         .isFloat({ min: 0, max: 10 })
@@ -332,7 +348,6 @@ exports.postUpdateManga = [
             manga_publisher,
             manga_genre,
             manga_language,
-            inventory_id
         );
 
         return res.status(200).redirect("/mangas");

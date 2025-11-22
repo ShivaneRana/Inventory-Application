@@ -10,9 +10,23 @@ const validationObject = [
     body("author_fullname")
         .trim()
         .matches(/^[a-zA-Z0-9\s]+$/)
-        .withMessage(
-            "Author name can only contain alphabets and numeric value"
-        ),
+        .withMessage("Author name can only contain alphabets and numeric value")
+        .custom(async(value,{req}) => {
+            const rows = await db.getAllAuthors();
+            const result = rows.find(author => author.author_fullname === value);
+            const {id} = req.params;
+
+            if(!result){
+                return true;
+            }
+
+            if(result.author_id === Number(id)){
+                return true;
+            }
+
+
+            throw new Error("Duplicate author are not allowed.");
+        }),
     body("author_age")
         .trim()
         .isNumeric()
