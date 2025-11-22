@@ -58,8 +58,8 @@ exports.getAddManga = async (req, res) => {
         publishers: publishers,
         authors: authors,
         genres: await db.getAllGenres(),
-        authorSet:new Set(),
-        publisherSet:new Set(),
+        authorSet: new Set(),
+        publisherSet: new Set(),
         languageSet: new Set(),
         genreSet: new Set(),
         languages: await db.getAllLanguages(),
@@ -97,8 +97,8 @@ exports.postAddManga = [
                 authors: authors,
                 genres: await db.getAllGenres(),
                 languages: await db.getAllLanguages(),
-                authorSet:new Set(),
-                publisherSet:new Set(),
+                authorSet: new Set(),
+                publisherSet: new Set(),
                 languageSet: new Set(),
                 genreSet: new Set(),
                 errors: errors.array(),
@@ -148,43 +148,43 @@ exports.postDeleteManga = async (req, res) => {
     const { id } = req.params;
     await db.deleteManga(id);
     return res.status(200).redirect("/mangas");
-
 };
 
-exports.getUpdateManga = async (req,res) => {
-    const {id} = req.params;
+exports.getUpdateManga = async (req, res) => {
+    const { id } = req.params;
     const rows = await db.getAllMangas();
-    const value = rows.find(manga => manga.manga_id === Number(id));
+    const value = rows.find((manga) => manga.manga_id === Number(id));
     const publishers = [];
     const authors = [];
     let authorSet;
-    let genreSet ;
-    let languageSet ;
+    let genreSet;
+    let languageSet;
     let publisherSet;
-    const {author_fullname,genre_name,language_name,publisher_name} = value;
+    const { author_fullname, genre_name, language_name, publisher_name } =
+        value;
 
-    if(!author_fullname){
+    if (!author_fullname) {
         authorSet = new Set();
-    }else{
-        authorSet = new Set((author_fullname.split(", ")));
+    } else {
+        authorSet = new Set(author_fullname.split(", "));
     }
 
-    if(!genre_name){
+    if (!genre_name) {
         genreSet = new Set();
-    }else{
-        genreSet = new Set((genre_name.split(", ")));
+    } else {
+        genreSet = new Set(genre_name.split(", "));
     }
 
-    if(!language_name){
+    if (!language_name) {
         languageSet = new Set();
-    }else{
-        languageSet = new Set((language_name.split(", ")));
+    } else {
+        languageSet = new Set(language_name.split(", "));
     }
 
-    if(!publisher_name){
+    if (!publisher_name) {
         publisherSet = new Set();
-    }else{
-        publisherSet = new Set((publisher_name.split(", ")));
+    } else {
+        publisherSet = new Set(publisher_name.split(", "));
     }
 
     (await db.getAllAuthors()).forEach((item) => {
@@ -201,7 +201,6 @@ exports.getUpdateManga = async (req,res) => {
         });
     });
 
-
     return res.status(200).render("mangas", {
         rows: rows,
         flag: true,
@@ -209,53 +208,58 @@ exports.getUpdateManga = async (req,res) => {
         authors: authors,
         genres: await db.getAllGenres(),
         languages: await db.getAllLanguages(),
-        languageSet:languageSet,
-        genreSet:genreSet,
-        authorSet:authorSet,
-        publisherSet:publisherSet,
-        update:true,
-        value:value,
+        languageSet: languageSet,
+        genreSet: genreSet,
+        authorSet: authorSet,
+        publisherSet: publisherSet,
+        update: true,
+        value: value,
     });
-}
+};
 
 exports.postUpdateManga = [
     validationObject,
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            const {id} = req.params;
+            const { id } = req.params;
             const rows = await db.getAllMangas();
-            const value = rows.find(manga => manga.manga_id === Number(id));
+            const value = rows.find((manga) => manga.manga_id === Number(id));
             const publishers = [];
             const authors = [];
             let authorSet;
             let genreSet;
             let languageSet;
             let publisherSet;
-            const { author_fullname, genre_name, language_name, publisher_name } = value;
+            const {
+                author_fullname,
+                genre_name,
+                language_name,
+                publisher_name,
+            } = value;
 
             if (!author_fullname) {
                 authorSet = new Set();
             } else {
-                authorSet = new Set((author_fullname.split(", ")));
+                authorSet = new Set(author_fullname.split(", "));
             }
 
             if (!genre_name) {
                 genreSet = new Set();
             } else {
-                genreSet = new Set((genre_name.split(", ")));
+                genreSet = new Set(genre_name.split(", "));
             }
 
             if (!language_name) {
                 languageSet = new Set();
             } else {
-                languageSet = new Set((language_name.split(", ")));
+                languageSet = new Set(language_name.split(", "));
             }
 
             if (!publisher_name) {
                 publisherSet = new Set();
             } else {
-                publisherSet = new Set((publisher_name.split(", ")));
+                publisherSet = new Set(publisher_name.split(", "));
             }
 
             (await db.getAllAuthors()).forEach((item) => {
@@ -272,7 +276,6 @@ exports.postUpdateManga = [
                 });
             });
 
-
             return res.status(200).render("mangas", {
                 rows: rows,
                 flag: true,
@@ -286,14 +289,14 @@ exports.postUpdateManga = [
                 publisherSet: publisherSet,
                 update: true,
                 value: value,
-                errors: errors.array()
+                errors: errors.array(),
             });
         }
 
-        const {id} = req.params;
+        const { id } = req.params;
         const rows = await db.getAllMangas();
-        const value = rows.find(manga => manga.manga_id === Number(id));
-        const {inventory_id,manga_id} = value;
+        const value = rows.find((manga) => manga.manga_id === Number(id));
+        const { inventory_id, manga_id } = value;
 
         let {
             manga_name,
@@ -329,10 +332,9 @@ exports.postUpdateManga = [
             manga_publisher,
             manga_genre,
             manga_language,
-            inventory_id,
+            inventory_id
         );
-
 
         return res.status(200).redirect("/mangas");
     },
-]
+];

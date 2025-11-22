@@ -28,12 +28,12 @@ const validationObject = [
 
 exports.getAuthorsList = async (req, res) => {
     const rows = await db.getAllAuthors();
-    res.status(200).render("authors", { rows: rows, flag: false ,value:{}});
+    res.status(200).render("authors", { rows: rows, flag: false, value: {} });
 };
 
 exports.getAddAuthor = async (req, res) => {
     const rows = await db.getAllAuthors();
-    res.status(200).render("authors", { rows: rows, flag: true ,value:{}});
+    res.status(200).render("authors", { rows: rows, flag: true, value: {} });
 };
 
 exports.postAddAuthor = [
@@ -45,7 +45,7 @@ exports.postAddAuthor = [
             return res.status(404).render("authors", {
                 rows: rows,
                 flag: true,
-                value:{},
+                value: {},
                 errors: errors.array(),
             });
         }
@@ -56,7 +56,7 @@ exports.postAddAuthor = [
             author_gender,
             author_age,
         } = matchedData(req);
-        
+
         await db.addAuthor(
             author_fullname,
             author_gender,
