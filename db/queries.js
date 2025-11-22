@@ -13,6 +13,7 @@ SELECT
     m.manga_rating,
     m.manga_image_url,
     m.manga_description,
+    i.inventory_id,
     i.inventory_price,
     i.inventory_quantity,
     STRING_AGG(DISTINCT g.genre_name, ', ' ORDER BY g.genre_name) AS genre_name,
@@ -37,6 +38,7 @@ GROUP BY
     m.manga_status,
     m.manga_rating,
     m.manga_image_url,
+    i.inventory_id,
     i.inventory_price,
     i.inventory_quantity
 ORDER BY m.manga_name;
@@ -188,6 +190,57 @@ exports.addManga = async (
     await exports.addInventory(manga_price, manga_quantity, manga_id);
 };
 
+exports.updateManga = async (
+    manga_id,
+    manga_name,
+    manga_rating,
+    manga_description,
+    manga_chapter_number,
+    manga_volume_number,
+    manga_status,
+    manga_image_url,
+    manga_price,
+    manga_quantity,
+    manga_author,
+    manga_publisher,
+    manga_genre,
+    manga_language,
+) => {
+        await pool.query(
+        `UPDATE  mangas SET manga_name = $1,
+            manga_rating = $2,
+            manga_description = $3,
+            manga_chapter_number = $4,
+            manga_volume_number = $5,
+            manga_status = $6,
+            manga_image_url = $7
+
+            WHERE mangas.manga_id = $8;
+        ` ,
+        [
+            manga_name,
+            manga_rating,
+            manga_description,
+            manga_chapter_number,
+            manga_volume_number,
+            manga_status,
+            manga_image_url,
+            manga_id
+        ]
+    );
+
+    // console.log(manga_author);
+    // console.log(manga_genre);
+    // console.log(manga_publisher);
+    // console.log(manga_language);
+
+    await exports.UpdateManga_authors(manga_id, manga_author);
+    await exports.UpdateManga_genres(manga_id, manga_genre);
+    await exports.UpdateManga_languages(manga_id, manga_language);
+    await exports.UpdateManga_publishers(manga_id, manga_publisher);
+    await exports.updateInventory(manga_price, manga_quantity, manga_id);
+}
+
 // helper function used to insert value into inventories for respective manga
 exports.addInventory = async (
     inventory_price,
@@ -196,6 +249,17 @@ exports.addInventory = async (
 ) => {
     await pool.query(
         "INSERT INTO inventories (inventory_price,inventory_quantity,manga_id) VALUES ($1,$2,$3)",
+        [inventory_price, inventory_quantity, manga_id]
+    );
+};
+
+exports.updateInventory = async (
+    inventory_price,
+    inventory_quantity,
+    manga_id,
+) => {
+    await pool.query(
+        "UPDATE inventories SET inventory_price = $1, inventory_quantity = $2 WHERE inventories.manga_id = $3;",
         [inventory_price, inventory_quantity, manga_id]
     );
 };
@@ -216,8 +280,22 @@ exports.addManga_authors = async (manga_id, author_array) => {
                 [manga_id, item.author_id]
             );
         });
-
     await Promise.all(promises);
+};
+
+exports.UpdateManga_authors = async (manga_id, author_array) => {
+    const {rows} = await pool.query("SELECT * FROM manga_authors WHERE manga_id = $1",[manga_id]);
+    
+    if(rows.length === 0){
+        await exports.addManga_authors(manga_id,author_array);
+    }else{
+
+        await pool.query(
+            "DELETE FROM manga_authors WHERE manga_id= $1",
+            [manga_id]
+        );
+        await exports.addManga_authors(manga_id,author_array);
+    }
 };
 
 exports.addManga_genres = async (manga_id, genre_array) => {
@@ -240,6 +318,22 @@ exports.addManga_genres = async (manga_id, genre_array) => {
     await Promise.all(promises);
 };
 
+exports.UpdateManga_genres = async (manga_id, genre_array) => {
+    const {rows} = await pool.query("SELECT * FROM manga_genres WHERE manga_id = $1",[manga_id]);
+    
+    if(rows.length === 0){
+        await exports.addManga_genres(manga_id,genre_array);
+    }else{
+
+        await pool.query(
+            "DELETE FROM manga_genres WHERE manga_id= $1",
+            [manga_id]
+        );
+
+        await exports.addManga_genres(manga_id,genre_array);
+    }
+};
+
 exports.addManga_languages = async (manga_id, language_array) => {
     const rows = await this.getAllLanguages();
 
@@ -260,6 +354,22 @@ exports.addManga_languages = async (manga_id, language_array) => {
     await Promise.all(promises);
 };
 
+exports.UpdateManga_languages = async (manga_id, genre_array) => {
+    const {rows} = await pool.query("SELECT * FROM manga_languages WHERE manga_id = $1",[manga_id]);
+    
+    if(rows.length === 0){
+        await exports.addManga_languages(manga_id,genre_array);
+    }else{
+
+        await pool.query(
+            "DELETE FROM manga_languages WHERE manga_id= $1",
+            [manga_id]
+        );
+
+        await exports.addManga_languages(manga_id,genre_array);
+    }
+};
+
 exports.addManga_publishers = async (manga_id, publisher_array) => {
     const rows = await this.getAllPublishers();
 
@@ -278,4 +388,20 @@ exports.addManga_publishers = async (manga_id, publisher_array) => {
         });
 
     await Promise.all(promises);
+};
+
+exports.UpdateManga_publishers = async (manga_id, genre_array) => {
+    const {rows} = await pool.query("SELECT * FROM manga_publishers WHERE manga_id = $1",[manga_id]);
+    
+    if(rows.length === 0){
+        await exports.addManga_publishers(manga_id,genre_array);
+    }else{
+
+        await pool.query(
+            "DELETE FROM manga_publishers WHERE manga_id= $1",
+            [manga_id]
+        );
+
+        await exports.addManga_publishers(manga_id,genre_array);
+    }
 };
