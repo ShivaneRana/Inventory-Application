@@ -23,6 +23,10 @@ app.use("/genres", genreRouter);
 app.use("/authors", authorRouter);
 app.use("/publishers", publisherRouter);
 
+app.use((req,res) => {
+    return res.status(404).render("404");
+})
+
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(err.statusCode || 500).send(err.message);
