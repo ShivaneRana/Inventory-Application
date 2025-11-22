@@ -43,7 +43,7 @@ let create_table = `
 
     CREATE TABLE IF NOT EXISTS authors(
         author_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        author_fullname varchar(200) NOT NULL DEFAULT 'Unknown',
+        author_fullname varchar(200) NOT NULL UNIQUE DEFAULT 'Unknown',
         author_gender varchar(200) NOT NULL CHECK (author_gender IN ('Male','Female','Other')),
         author_age INTEGER NOT NULL CHECK (author_age > 0),
         author_country_of_origin varchar(200) NOT NULL
