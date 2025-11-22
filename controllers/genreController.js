@@ -11,22 +11,21 @@ const validationObject = [
         .trim()
         .matches(/^[a-zA-Z\s]+$/)
         .withMessage("Genre name should be in alphabetic letters.")
-        .custom(async (value,{req}) => {
-            const {id} = req.params;
+        .custom(async (value, { req }) => {
+            const { id } = req.params;
             const rows = await db.getAllGenres();
-            const result = rows.find(genre => genre.genre_name === value);
+            const result = rows.find((genre) => genre.genre_name === value);
 
             if (!result) {
                 return true;
             }
 
-            if(result.genre_id === Number(id)){
+            if (result.genre_id === Number(id)) {
                 return true;
             }
 
             throw new Error("Duplicate genre are not allowed.");
-        })
-
+        }),
 ];
 
 exports.getGenresList = async (req, res) => {

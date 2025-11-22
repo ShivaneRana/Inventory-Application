@@ -11,16 +11,18 @@ validationObject = [
         .trim()
         .matches(/^[a-zA-Z0-9\s]+$/)
         .withMessage("Publisher name only contain alphabet letters or numbers.")
-        .custom(async(value,{req}) => {
-            const {id} = req.params;
+        .custom(async (value, { req }) => {
+            const { id } = req.params;
             const rows = await db.getAllPublishers();
-            const result = rows.find(publisher => publisher.publisher_name === value);
+            const result = rows.find(
+                (publisher) => publisher.publisher_name === value
+            );
 
-            if(!result){
+            if (!result) {
                 return true;
             }
 
-            if(result.publisher_id === Number(id)){
+            if (result.publisher_id === Number(id)) {
                 return true;
             }
 

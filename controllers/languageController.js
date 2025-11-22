@@ -11,21 +11,21 @@ const validationObject = [
         .trim()
         .matches(/^[a-zA-Z\s]+$/)
         .withMessage("Language can only contains alphabet letters.")
-        .custom(async(value,{req}) => {
-            const {id} = req.params;
+        .custom(async (value, { req }) => {
+            const { id } = req.params;
             const rows = await db.getAllLanguages();
-            const result = rows.find(lang => lang.language_name === value);
+            const result = rows.find((lang) => lang.language_name === value);
 
-            if(!result){
+            if (!result) {
                 return true;
             }
 
-            if(result.language_id === Number(id)){
-                return true
+            if (result.language_id === Number(id)) {
+                return true;
             }
-            
+
             throw new Error("Duplicate languages are not allowed.");
-        })
+        }),
 ];
 
 exports.getLanguagesList = async (req, res) => {
@@ -53,9 +53,9 @@ exports.postAddLanguage = [
 
         const { language_name } = matchedData(req);
 
-        try{
+        try {
             await db.addLanguage(language_name);
-        }catch(err){
+        } catch (err) {
             console.log(err);
         }
 

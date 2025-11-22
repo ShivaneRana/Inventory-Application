@@ -3,17 +3,20 @@ const { body, validationResult, matchedData } = require("express-validator");
 const db = require("../db/queries.js");
 
 const validationObject = [
-    body("manga_name").trim().notEmpty().withMessage("Name cannot be empty.")
-        .custom(async(value,{req}) => {
-            const {id} = req.params;
+    body("manga_name")
+        .trim()
+        .notEmpty()
+        .withMessage("Name cannot be empty.")
+        .custom(async (value, { req }) => {
+            const { id } = req.params;
             const rows = await db.getAllMangas();
-            const result = rows.find(manga => manga.manga_name === value);
+            const result = rows.find((manga) => manga.manga_name === value);
 
-            if(!result){
+            if (!result) {
                 return true;
             }
-            
-            if(result.manga_id === Number(id)){
+
+            if (result.manga_id === Number(id)) {
                 return true;
             }
 
@@ -347,7 +350,7 @@ exports.postUpdateManga = [
             manga_author,
             manga_publisher,
             manga_genre,
-            manga_language,
+            manga_language
         );
 
         return res.status(200).redirect("/mangas");
