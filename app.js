@@ -29,7 +29,7 @@ app.use((req, res) => {
 
 app.use((err, req, res, next) => {
     console.error(err);
-    res.status(err.statusCode || 500).send(err.message);
+    res.status(err.statusCode || 500).send(err.message || 'Internal server error');
 });
 
 const PORT = process.env.PORT;
